@@ -16,7 +16,7 @@ public class JwtAuthenticationRequest implements Serializable {
         super();
     }
 
-    public JwtAuthenticationRequest(String username, String password) {
+    public JwtAuthenticationRequest(String username, String password, String role) {
         this.setUsername(username);
         this.setPassword(password);
     }

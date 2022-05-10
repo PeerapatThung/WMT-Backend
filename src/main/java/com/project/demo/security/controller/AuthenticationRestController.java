@@ -1,6 +1,8 @@
 package com.project.demo.security.controller;
 
 
+import com.project.demo.student.entity.Student;
+import com.project.demo.student.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +51,9 @@ public class AuthenticationRestController {
 
     @Autowired
     AuthorityRepository authorityRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
     @PostMapping("${jwt.route.authentication.path}")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 
@@ -88,5 +93,40 @@ public class AuthenticationRestController {
         } else {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @PostMapping("${jwt.route.register.path}/{role}")
+    public ResponseEntity<?> addUser(@PathVariable(value = "role", required = true) String role,
+                                     @RequestParam(value = "name", required = true) String display,
+            @RequestBody JwtAuthenticationRequest authenticationRequest) {
+        if(userRepository.findByUsername(authenticationRequest.getUsername()) == null){
+            User user = new User();
+            if(role == "student"){
+                Authority authUser = Authority.builder().name(AuthorityName.ROLE_STUDENT).build();
+                authorityRepository.save(authUser);
+                user.getAuthorities().add(authUser);
+            }
+            else if(role == "tutor"){
+                Authority authUser = Authority.builder().name(AuthorityName.ROLE_TUTOR).build();
+                authorityRepository.save(authUser);
+                user.getAuthorities().add(authUser);
+            }
+            PasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(authenticationRequest.getPassword()));
+            user.setEmail(authenticationRequest.getEmail());
+            user.setUsername(authenticationRequest.getUsername());
+            user.setFirstname(authenticationRequest.getFirstname());
+            user.setLastname(authenticationRequest.getLastname());
+            user.setEnabled(true);
+            userRepository.save(user);
+            Student student = Student.builder()
+                    .displayName(display)
+                    .build();
+            student.setUser(user);
+            studentRepository.save(student);
+            return ResponseEntity.ok("Register successfully");
+
+        }
+        else return (ResponseEntity<?>) ResponseEntity.badRequest();
     }
 }

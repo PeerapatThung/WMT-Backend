@@ -1,7 +1,7 @@
-package com.project.demo.student.entity;
+package com.project.demo.tutor.entity;
 
 import com.project.demo.security.entity.User;
-import com.project.demo.tutor.entity.Tutor;
+import com.project.demo.student.entity.Student;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
@@ -17,18 +17,15 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Tutor{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
-    String description;
-    String profileImg;
-    String displayName;
 
     @ManyToMany
     @Builder.Default
-    List<Tutor> tutors = new ArrayList<>();
+    List<Student> students = new ArrayList<>();
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     User user;
 }
