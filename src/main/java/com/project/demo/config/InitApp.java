@@ -3,8 +3,12 @@ package com.project.demo.config;
 import com.project.demo.security.entity.Authority;
 import com.project.demo.security.entity.AuthorityName;
 import com.project.demo.security.entity.User;
+import com.project.demo.security.repository.AuthorityRepository;
 import com.project.demo.security.repository.UserRepository;
 import com.project.demo.student.entity.Student;
+import com.project.demo.student.repository.StudentRepository;
+import com.project.demo.tutor.entity.Tutor;
+import com.project.demo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -22,53 +26,72 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    AuthorityRepository authorityRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    TutorRepository tutorRepository;
     @Override
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        User user1,user2;
-        Student student,student2;
+        User user1,user2, user3;
+        Student student;
+        Tutor tutor;
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         Authority authStudent = Authority.builder().name(AuthorityName.ROLE_STUDENT).build();
         Authority authTutor = Authority.builder().name(AuthorityName.ROLE_TUTOR).build();
+        Authority authAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
         user1 = User.builder()
-                .username("student1")
-                .email("student1@admin.com")
-                .password(encoder.encode("student1"))
+                .username("student@admin.com")
+                .email("student@admin.com")
+                .password(encoder.encode("student"))
                 .firstname("student1")
                 .lastname("student1")
+                .displayname("Mock Student")
                 .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
         user2 = User.builder()
-                .username("student2")
-                .email("student2@admin.com")
-                .password(encoder.encode("student2"))
-                .firstname("student2")
-                .lastname("student2")
+                .username("tutor@admin.com")
+                .email("tutor@admin.com")
+                .password(encoder.encode("tutor"))
+                .firstname("tutor")
+                .lastname("tutor")
+                .displayname("Mock Tutor")
+                .enabled(true)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .build();
+        user3 = User.builder()
+                .username("admin@admin.com")
+                .email("admin@admin.com")
+                .password(encoder.encode("admin"))
+                .firstname("admin")
+                .lastname("admin")
+                .displayname("Administrator")
                 .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
         student = Student.builder()
-                .name(user1.getFirstname())
-                .money(200.00)
-                .buyLimit(5)
-                .coinAmount(5).build();
-        student2 = Student.builder()
-                .name(user2.getFirstname())
-                .money(200.00)
-                .buyLimit(5)
-                .coinAmount(10).build();
-        authorityRepository.save(authUser);
-        student.setAccount(user1);
-        student2.setAccount(user2);
-        user1.setMember(student);
-        user1.getAuthorities().add(authUser);
-        user2.setMember(student2);
-        user2.getAuthorities().add(authUser);
+                .build();
+        tutor = Tutor.builder()
+                .build();
+        authorityRepository.save(authStudent);
+        authorityRepository.save(authTutor);
+        authorityRepository.save(authAdmin);
+        student.setUser(user1);
+        tutor.setUser(user2);
+        user1.getAuthorities().add(authStudent);
+        user1.setStudent(student);
+        user2.getAuthorities().add(authTutor);
+        user2.setTutor(tutor);
+        user3.getAuthorities().add(authAdmin);
         userRepository.save(user1);
         userRepository.save(user2);
+        userRepository.save(user3);
         studentRepository.save(student);
-        studentRepository.save(student2);
-        coinStockRepository.save(stock);
+        tutorRepository.save(tutor);
     }
 }

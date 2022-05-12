@@ -22,11 +22,13 @@ public class Tutor{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
+    String description;
+    String profileImg;
 
     @ManyToMany
     @Builder.Default
     List<Student> students = new ArrayList<>();
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL)
     User user;
 }
 

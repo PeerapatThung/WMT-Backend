@@ -3,6 +3,8 @@ package com.project.demo.security.controller;
 
 import com.project.demo.student.entity.Student;
 import com.project.demo.student.repository.StudentRepository;
+import com.project.demo.tutor.entity.Tutor;
+import com.project.demo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +56,9 @@ public class AuthenticationRestController {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    TutorRepository tutorRepository;
     @PostMapping("${jwt.route.authentication.path}")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 
@@ -72,11 +77,9 @@ public class AuthenticationRestController {
         Map result = new HashMap();
         result.put("token", token);
         User user = userRepository.findById(((JwtUser) userDetails).getId()).orElse(null);
-//        if(user.getPatient() != null) {
-//            result.put("user", LabMapper.INSTANCE.getPatientAuthDTO(user.getPatient()));
-//        }else if(user.getDoctor() != null) {
-//            result.put("user", LabMapper.INSTANCE.getDoctorAuthDTO(user.getDoctor()));
-//        }
+        if(user != null) {
+            result.put("user", WMTMapper.INSTANCE.getUserDto(user));
+        }
         return ResponseEntity.ok(result);
     }
 
@@ -95,18 +98,17 @@ public class AuthenticationRestController {
         }
     }
 
-    @PostMapping("${jwt.route.register.path}/{role}")
+    @PostMapping("/register/{role}")
     public ResponseEntity<?> addUser(@PathVariable(value = "role", required = true) String role,
-                                     @RequestParam(value = "name", required = true) String display,
             @RequestBody JwtAuthenticationRequest authenticationRequest) {
         if(userRepository.findByUsername(authenticationRequest.getUsername()) == null){
             User user = new User();
-            if(role == "student"){
+            if(String.valueOf(role).equals("student")){
                 Authority authUser = Authority.builder().name(AuthorityName.ROLE_STUDENT).build();
                 authorityRepository.save(authUser);
                 user.getAuthorities().add(authUser);
             }
-            else if(role == "tutor"){
+            else if(String.valueOf(role).equals("tutor")){
                 Authority authUser = Authority.builder().name(AuthorityName.ROLE_TUTOR).build();
                 authorityRepository.save(authUser);
                 user.getAuthorities().add(authUser);
@@ -117,14 +119,22 @@ public class AuthenticationRestController {
             user.setUsername(authenticationRequest.getUsername());
             user.setFirstname(authenticationRequest.getFirstname());
             user.setLastname(authenticationRequest.getLastname());
+            user.setDisplayname(authenticationRequest.getDisplayname());
             user.setEnabled(true);
             userRepository.save(user);
-            Student student = Student.builder()
-                    .displayName(display)
-                    .build();
-            student.setUser(user);
-            studentRepository.save(student);
-            return ResponseEntity.ok("Register successfully");
+            if(String.valueOf(role).equals("student")) {
+                Student student = Student.builder()
+                        .build();
+                student.setUser(user);
+                studentRepository.save(student);
+            }
+            else if(String.valueOf(role).equals("tutor")){
+                Tutor tutor = Tutor.builder()
+                        .build();
+                tutor.setUser(user);
+                tutorRepository.save(tutor);
+            }
+            return ResponseEntity.ok(WMTMapper.INSTANCE.getUserDto(user));
 
         }
         else return (ResponseEntity<?>) ResponseEntity.badRequest();

@@ -24,7 +24,6 @@ public class Student {
     private Long id;
     String description;
     String profileImg;
-    String displayName;
 
     @ManyToMany
     @Builder.Default
