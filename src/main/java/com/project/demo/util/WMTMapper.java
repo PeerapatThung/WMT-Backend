@@ -1,5 +1,7 @@
 package com.project.demo.util;
 
+import com.project.demo.student.dto.StudentDTO;
+import com.project.demo.student.entity.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -13,11 +15,6 @@ import java.util.stream.Collectors;
 public interface WMTMapper {
     WMTMapper INSTANCE = Mappers.getMapper(WMTMapper.class);
     List<UserDTO> getUserDTO(List<User> user);
-
     UserDTO getUserDto(User user);
-
-
-
-
-
+    StudentDTO getStudentDTO(Student student);
 }

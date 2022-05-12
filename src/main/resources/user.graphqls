@@ -1,0 +1,10 @@
+type UserDTO{
+    username: String
+    password: String
+    email: String
+    authorities: [AuthorityDTO]
+}
+
+type AuthorityDTO{
+    name: String
+}

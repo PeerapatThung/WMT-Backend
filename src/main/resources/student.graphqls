@@ -1,0 +1,12 @@
+type StudentDTO{
+    id: Int
+    description: String
+    profileImg: String
+    user: UserDTO
+}
+
+input InputStudent{
+    id: Int
+    description: String
+    profileImg: String
+}
