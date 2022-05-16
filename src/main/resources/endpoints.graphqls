@@ -5,8 +5,15 @@ schema {
 
 type Query{
     getStudent(id: Int): StudentDTO
+    getTutor(id: Int): TutorDTO
 }
 
 type Mutation{
     createStudent(student:InputStudent): StudentDTO
+    editStudent(student:InputStudent, id:Int): StudentDTO
+    deleteStudent(id:Int): StudentDTO
+
+    createTutor(tutor:InputTutor): TutorDTO
+    editTutor(tutor:InputTutor, id:Int): TutorDTO
+    deleteTutor(id:Int): TutorDTO
 }

@@ -24,6 +24,7 @@ public class Tutor{
     private Long id;
     String description;
     String profileImg;
+    boolean active;
 
     @ManyToMany
     @Builder.Default

@@ -29,5 +29,20 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.getStudent(id);
     }
 
+    @Override
+    public Student editProfile(Student student, Long id) {
+        Student editedStudent = studentDao.getStudent(id);
+        editedStudent.setDescription(student.getDescription());
+        editedStudent.setProfileImg(student.getProfileImg());
+        return studentDao.editProfile(editedStudent);
+    }
+
+    @Override
+    public Student deleteProfile(Long id) {
+        Student deletingStudent = studentDao.getStudent(id);
+        deletingStudent.setActive(false);
+        return studentDao.deleteProfile(deletingStudent);
+    }
+
 
 }

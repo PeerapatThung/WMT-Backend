@@ -4,3 +4,10 @@ type TutorDTO{
     profileImg: String
     user: UserDTO
 }
+
+input InputTutor{
+    id: Int
+    description: String
+    profileImg: String
+}
+

@@ -19,4 +19,14 @@ public class StudentDaoImpl implements StudentDao{
     public Student getStudent(Long id) {
         return studentRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Student editProfile(Student student) {
+        return studentRepository.save(student);
+    }
+
+    @Override
+    public Student deleteProfile(Student student) {
+        return studentRepository.save(student);
+    }
 }

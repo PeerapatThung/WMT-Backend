@@ -8,4 +8,6 @@ import java.util.List;
 public interface StudentService {
     Student createProfile(Student student);
     Student getStudent(Long id);
+    Student editProfile(Student student, Long id);
+    Student deleteProfile(Long id);
 }

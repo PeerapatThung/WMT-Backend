@@ -19,4 +19,14 @@ public class StudentMutation implements GraphQLMutationResolver{
         Student newStudent = studentService.createProfile(student);
         return WMTMapper.INSTANCE.getStudentDTO(newStudent);
     }
+
+    public StudentDTO editStudent(Student student, Long id){
+        Student updateStudent = studentService.editProfile(student, id);
+        return WMTMapper.INSTANCE.getStudentDTO(updateStudent);
+    }
+
+    public StudentDTO deleteStudent(Long id){
+        Student deletingStudent = studentService.deleteProfile(id);
+        return WMTMapper.INSTANCE.getStudentDTO(deletingStudent);
+    }
 }
