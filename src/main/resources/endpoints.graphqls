@@ -9,11 +9,12 @@ type Query{
 }
 
 type Mutation{
-    createStudent(student:InputStudent): StudentDTO
+    createStudent(student:InputStudent, userid:Int): StudentDTO
     editStudent(student:InputStudent, id:Int): StudentDTO
     deleteStudent(id:Int): StudentDTO
 
     createTutor(tutor:InputTutor): TutorDTO
     editTutor(tutor:InputTutor, id:Int): TutorDTO
     deleteTutor(id:Int): TutorDTO
+    addStudentToTutor(studentid:Int, tutorid:Int): TutorDTO
 }

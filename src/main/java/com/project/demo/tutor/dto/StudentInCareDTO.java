@@ -1,8 +1,7 @@
 package com.project.demo.tutor.dto;
 
-import com.project.demo.preference.dto.PreferenceDTO;
 import com.project.demo.security.entity.UserDTO;
-import com.project.demo.subject.dto.SubjectDTO;
+import com.project.demo.student.dto.TeachingTutorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,14 +13,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TutorDTO {
+public class StudentInCareDTO {
     Long id;
-    String description;
-    String profileImg;
-    List<StudentInCareDTO> students;
-    List<SubjectDTO> subjects;
-    List<PreferenceDTO> preferences;
-    boolean active;
     UserDTO user;
 }
 

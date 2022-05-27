@@ -2,11 +2,11 @@ type StudentDTO{
     id: Int
     description: String
     profileImg: String
+    active: Boolean
     user: UserDTO
 }
 
 input InputStudent{
-    id: Int
     description: String
     profileImg: String
 }

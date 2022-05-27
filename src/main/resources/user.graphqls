@@ -1,10 +1,13 @@
 type UserDTO{
-    username: String
-    password: String
+    displayname: String
     email: String
     authorities: [AuthorityDTO]
 }
 
 type AuthorityDTO{
     name: String
+}
+
+input UserID{
+    id: Int
 }

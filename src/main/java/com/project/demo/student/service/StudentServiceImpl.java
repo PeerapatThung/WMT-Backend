@@ -1,5 +1,7 @@
 package com.project.demo.student.service;
 
+import com.project.demo.security.entity.User;
+import com.project.demo.security.repository.UserRepository;
 import com.project.demo.student.dao.StudentDao;
 import com.project.demo.student.entity.Student;
 import com.project.demo.student.repository.StudentRepository;
@@ -15,12 +17,18 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDao studentDao;
 
+    @Autowired
+    UserRepository userRepository;
     @Override
-    public Student createProfile(Student student) {
+    public Student createProfile(Student student, Long userid) {
         Student newStudent = Student.builder()
                 .description(student.getDescription())
                 .profileImg(student.getProfileImg())
                 .build();
+        User attachUser = userRepository.findById(userid).orElse(null);
+        newStudent.setUser(attachUser);
+        attachUser.setStudent(newStudent);
+        userRepository.save(attachUser);
         return studentDao.createProfile(newStudent);
     }
 

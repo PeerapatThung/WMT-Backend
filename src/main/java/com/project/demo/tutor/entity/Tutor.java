@@ -1,7 +1,10 @@
 package com.project.demo.tutor.entity;
 
+import com.project.demo.preference.entity.Preference;
 import com.project.demo.security.entity.User;
 import com.project.demo.student.entity.Student;
+import com.project.demo.subject.entity.Category;
+import com.project.demo.subject.entity.Subject;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
@@ -25,6 +28,14 @@ public class Tutor{
     String description;
     String profileImg;
     boolean active;
+
+    @ManyToMany
+    @Builder.Default
+    List<Preference> preferences = new ArrayList<>();
+
+    @ManyToMany
+    @Builder.Default
+    List<Subject> subjects = new ArrayList<>();
 
     @ManyToMany
     @Builder.Default

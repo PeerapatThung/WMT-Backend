@@ -15,8 +15,8 @@ public class StudentMutation implements GraphQLMutationResolver{
     @Autowired
     StudentService studentService;
     @Transactional
-    public StudentDTO createStudent(Student student){
-        Student newStudent = studentService.createProfile(student);
+    public StudentDTO createStudent(Student student, Long userid){
+        Student newStudent = studentService.createProfile(student, userid);
         return WMTMapper.INSTANCE.getStudentDTO(newStudent);
     }
 

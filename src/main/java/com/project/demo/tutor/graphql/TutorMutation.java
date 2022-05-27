@@ -1,5 +1,7 @@
 package com.project.demo.tutor.graphql;
 
+import com.project.demo.student.entity.Student;
+import com.project.demo.student.service.StudentService;
 import com.project.demo.tutor.dto.TutorDTO;
 import com.project.demo.tutor.entity.Tutor;
 import com.project.demo.tutor.service.TutorService;
@@ -15,6 +17,9 @@ public class TutorMutation implements GraphQLMutationResolver{
     @Autowired
     TutorService tutorService;
 
+    @Autowired
+    StudentService studentService;
+
     @Transactional
     public TutorDTO createTutor(Tutor tutor){
         Tutor newTutor = tutorService.createProfile(tutor);
@@ -29,6 +34,12 @@ public class TutorMutation implements GraphQLMutationResolver{
     public TutorDTO deleteTutor(Long id){
         Tutor deletingTutor = tutorService.deleteProfile(id);
         return WMTMapper.INSTANCE.getTutorDTO(deletingTutor);
+    }
+
+    public TutorDTO addStudentToTutor(Long studentid, Long tutorid){
+        Tutor tutor = tutorService.getTutor(tutorid);
+        tutor.getStudents().add(studentService.getStudent(studentid));
+        return WMTMapper.INSTANCE.getTutorDTO(tutor);
     }
 
 }

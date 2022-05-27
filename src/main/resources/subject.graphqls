@@ -1,0 +1,8 @@
+type SubjectDTO{
+    name: String
+    category: CategoryDTO
+}
+
+type CategoryDTO{
+    name: String
+}

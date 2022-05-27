@@ -17,6 +17,8 @@ public class StudentDTO {
     Long id;
     String description;
     String profileImg;
+    boolean active;
+    List<TeachingTutorDTO> tutors;
     UserDTO user;
 }
 
