@@ -2,7 +2,11 @@ type TutorDTO{
     id: Int
     description: String
     profileImg: String
-    active:Boolean
+    students: [StudentInCareDTO]
+    subjects: [SubjectDTO]
+    preferences: [PreferenceDTO]
+    reviews: [ReviewDTO]
+    active: Boolean
     user: UserDTO
 }
 
@@ -10,6 +14,8 @@ input InputTutor{
     id: Int
     description: String
     profileImg: String
+    preferences: [InputPreference]
+    subjects: [InputSubject]
 }
 
 type TutorDetails{
@@ -19,6 +25,8 @@ type TutorDetails{
     students: [StudentInCareDTO]
     subjects: [SubjectDTO]
     preferences: [PreferenceDTO]
+    active: Boolean
+    user: UserDTO
 }
 
 type StudentInCareDTO{

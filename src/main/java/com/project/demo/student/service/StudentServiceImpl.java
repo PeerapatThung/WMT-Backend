@@ -1,10 +1,13 @@
 package com.project.demo.student.service;
 
+import com.project.demo.review.entity.Review;
 import com.project.demo.security.entity.User;
 import com.project.demo.security.repository.UserRepository;
 import com.project.demo.student.dao.StudentDao;
 import com.project.demo.student.entity.Student;
 import com.project.demo.student.repository.StudentRepository;
+import com.project.demo.tutor.dao.TutorDao;
+import com.project.demo.tutor.entity.Tutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDao studentDao;
 
+    @Autowired
+    TutorDao tutorDao;
     @Autowired
     UserRepository userRepository;
     @Override
@@ -51,6 +56,4 @@ public class StudentServiceImpl implements StudentService {
         deletingStudent.setActive(false);
         return studentDao.deleteProfile(deletingStudent);
     }
-
-
 }

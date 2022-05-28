@@ -3,10 +3,15 @@ type StudentDTO{
     description: String
     profileImg: String
     active: Boolean
+    tutors: [TeachingTutorDTO]
     user: UserDTO
 }
 
 input InputStudent{
     description: String
     profileImg: String
+}
+
+type TeachingTutorDTO{
+    user: UserDTO
 }

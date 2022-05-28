@@ -13,6 +13,9 @@ public class TutorDaoImpl implements TutorDao {
     @Autowired
     TutorRepository tutorRepository;
 
+    @Autowired
+    StudentRepository studentRepository;
+
     @Override
     public Tutor createProfile(Tutor tutor) {
         return tutorRepository.save(tutor);
@@ -30,6 +33,12 @@ public class TutorDaoImpl implements TutorDao {
 
     @Override
     public Tutor deleteProfile(Tutor tutor) {
+        return tutorRepository.save(tutor);
+    }
+
+    @Override
+    public Tutor addStudentToTutor(Student student, Tutor tutor) {
+        studentRepository.save(student);
         return tutorRepository.save(tutor);
     }
 

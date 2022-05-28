@@ -1,6 +1,7 @@
 package com.project.demo.tutor.dto;
 
 import com.project.demo.preference.dto.PreferenceDTO;
+import com.project.demo.review.dto.ReviewDTO;
 import com.project.demo.security.entity.UserDTO;
 import com.project.demo.subject.dto.SubjectDTO;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class TutorDTO {
     List<PreferenceDTO> preferences;
     boolean active;
     UserDTO user;
+    List<ReviewDTO> reviews;
 }
 
 

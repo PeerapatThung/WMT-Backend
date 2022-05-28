@@ -65,18 +65,23 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         calculus = Subject.builder().name("Calculus").build();
         algebra = Subject.builder().name("Algebra").build();
 
-        subjectRepository.save(thermo);
-        subjectRepository.save(force);
-        subjectRepository.save(calculus);
-        subjectRepository.save(algebra);
-
         physics.getSubjects().add(thermo);
         physics.getSubjects().add(force);
         maths.getSubjects().add(calculus);
         maths.getSubjects().add(algebra);
 
+        calculus.setCategory(maths);
+        algebra.setCategory(maths);
+        force.setCategory(physics);
+        thermo.setCategory(physics);
+
         categoryRepository.save(physics);
         categoryRepository.save(maths);
+
+        subjectRepository.save(thermo);
+        subjectRepository.save(force);
+        subjectRepository.save(calculus);
+        subjectRepository.save(algebra);
 
         competitive = Preference.builder().name("Competitive Course").build();
         grading = Preference.builder().name("Grading Course").build();

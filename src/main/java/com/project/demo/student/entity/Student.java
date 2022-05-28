@@ -1,5 +1,6 @@
 package com.project.demo.student.entity;
 
+import com.project.demo.review.entity.Review;
 import com.project.demo.security.entity.User;
 import com.project.demo.tutor.entity.Tutor;
 import com.sun.istack.NotNull;
@@ -33,6 +34,11 @@ public class Student {
     List<Tutor> tutors = new ArrayList<>();
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     User user;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Review> reviews = new ArrayList<>();
 }
 
 

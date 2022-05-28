@@ -6,3 +6,7 @@ type SubjectDTO{
 type CategoryDTO{
     name: String
 }
+
+input InputSubject{
+    id: Int
+}

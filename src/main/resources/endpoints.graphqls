@@ -13,8 +13,10 @@ type Mutation{
     editStudent(student:InputStudent, id:Int): StudentDTO
     deleteStudent(id:Int): StudentDTO
 
-    createTutor(tutor:InputTutor): TutorDTO
+    createTutor(tutor:InputTutor, userid:Int): TutorDTO
     editTutor(tutor:InputTutor, id:Int): TutorDTO
     deleteTutor(id:Int): TutorDTO
     addStudentToTutor(studentid:Int, tutorid:Int): TutorDTO
+
+    writeReview(tutorid:Int, studentid:Int, review:InputReview) : TutorDTO
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class TutorMutation implements GraphQLMutationResolver{
@@ -21,8 +22,8 @@ public class TutorMutation implements GraphQLMutationResolver{
     StudentService studentService;
 
     @Transactional
-    public TutorDTO createTutor(Tutor tutor){
-        Tutor newTutor = tutorService.createProfile(tutor);
+    public TutorDTO createTutor(Tutor tutor, Long id) throws InterruptedException {
+        Tutor newTutor = tutorService.createProfile(tutor, id);
         return WMTMapper.INSTANCE.getTutorDTO(newTutor);
     }
 
@@ -37,8 +38,7 @@ public class TutorMutation implements GraphQLMutationResolver{
     }
 
     public TutorDTO addStudentToTutor(Long studentid, Long tutorid){
-        Tutor tutor = tutorService.getTutor(tutorid);
-        tutor.getStudents().add(studentService.getStudent(studentid));
+        Tutor tutor = tutorService.addStudentToTutor(studentid, tutorid);
         return WMTMapper.INSTANCE.getTutorDTO(tutor);
     }
 
