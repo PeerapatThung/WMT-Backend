@@ -1,0 +1,22 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query{
+    getStudent(id: Int): StudentDTO
+    getTutor(id: Int): TutorDTO
+}
+
+type Mutation{
+    createStudent(student:InputStudent, userid:Int): StudentDTO
+    editStudent(student:InputStudent, id:Int): StudentDTO
+    deleteStudent(id:Int): StudentDTO
+
+    createTutor(tutor:InputTutor, userid:Int): TutorDTO
+    editTutor(tutor:InputTutor, id:Int): TutorDTO
+    deleteTutor(id:Int): TutorDTO
+    addStudentToTutor(studentid:Int, tutorid:Int): TutorDTO
+
+    writeReview(tutorid:Int, studentid:Int, review:InputReview) : TutorDTO
+}

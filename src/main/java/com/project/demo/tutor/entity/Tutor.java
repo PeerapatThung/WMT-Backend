@@ -1,7 +1,11 @@
 package com.project.demo.tutor.entity;
 
+import com.project.demo.preference.entity.Preference;
+import com.project.demo.review.entity.Review;
 import com.project.demo.security.entity.User;
 import com.project.demo.student.entity.Student;
+import com.project.demo.subject.entity.Category;
+import com.project.demo.subject.entity.Subject;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
@@ -24,12 +28,30 @@ public class Tutor{
     private Long id;
     String description;
     String profileImg;
+    @Builder.Default
+    boolean active = true;
 
     @ManyToMany
     @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Preference> preferences = new ArrayList<>();
+
+    @ManyToMany
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Subject> subjects = new ArrayList<>();
+
+    @ManyToMany
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
     List<Student> students = new ArrayList<>();
     @OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL)
     User user;
+
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Review> reviews = new ArrayList<>();
 }
 
 

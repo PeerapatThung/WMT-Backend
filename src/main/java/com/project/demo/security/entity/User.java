@@ -67,7 +67,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Authority> authorities = new ArrayList<>();
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     Student student;
 	@OneToOne
     Tutor tutor;

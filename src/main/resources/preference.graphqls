@@ -1,0 +1,7 @@
+type PreferenceDTO{
+    name: String
+}
+
+input InputPreference{
+    id: Int
+}

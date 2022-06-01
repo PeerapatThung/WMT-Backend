@@ -1,5 +1,7 @@
 package com.project.demo.config;
 
+import com.project.demo.preference.entity.Preference;
+import com.project.demo.preference.repository.PreferenceRepository;
 import com.project.demo.security.entity.Authority;
 import com.project.demo.security.entity.AuthorityName;
 import com.project.demo.security.entity.User;
@@ -7,6 +9,10 @@ import com.project.demo.security.repository.AuthorityRepository;
 import com.project.demo.security.repository.UserRepository;
 import com.project.demo.student.entity.Student;
 import com.project.demo.student.repository.StudentRepository;
+import com.project.demo.subject.entity.Category;
+import com.project.demo.subject.entity.Subject;
+import com.project.demo.subject.repository.CategoryRepository;
+import com.project.demo.subject.repository.SubjectRepository;
 import com.project.demo.tutor.entity.Tutor;
 import com.project.demo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +36,15 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     AuthorityRepository authorityRepository;
 
     @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    SubjectRepository subjectRepository;
+
+    @Autowired
+    PreferenceRepository preferenceRepository;
+
+    @Autowired
     StudentRepository studentRepository;
 
     @Autowired
@@ -38,8 +53,41 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         User user1,user2, user3;
+        Preference competitive, grading;
+        Category physics, maths;
+        Subject thermo, force, calculus, algebra;
         Student student;
         Tutor tutor;
+        physics = Category.builder().name("Physics").build();
+        maths = Category.builder().name("Mathematics").build();
+        thermo = Subject.builder().name("Thermodynamics").build();
+        force = Subject.builder().name("Force").build();
+        calculus = Subject.builder().name("Calculus").build();
+        algebra = Subject.builder().name("Algebra").build();
+
+        physics.getSubjects().add(thermo);
+        physics.getSubjects().add(force);
+        maths.getSubjects().add(calculus);
+        maths.getSubjects().add(algebra);
+
+        calculus.setCategory(maths);
+        algebra.setCategory(maths);
+        force.setCategory(physics);
+        thermo.setCategory(physics);
+
+        categoryRepository.save(physics);
+        categoryRepository.save(maths);
+
+        subjectRepository.save(thermo);
+        subjectRepository.save(force);
+        subjectRepository.save(calculus);
+        subjectRepository.save(algebra);
+
+        competitive = Preference.builder().name("Competitive Course").build();
+        grading = Preference.builder().name("Grading Course").build();
+
+        preferenceRepository.save(competitive);
+        preferenceRepository.save(grading);
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         Authority authStudent = Authority.builder().name(AuthorityName.ROLE_STUDENT).build();
         Authority authTutor = Authority.builder().name(AuthorityName.ROLE_TUTOR).build();
@@ -83,6 +131,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         authorityRepository.save(authAdmin);
         student.setUser(user1);
         tutor.setUser(user2);
+        tutor.getPreferences().add(grading);
+        tutor.getSubjects().add(thermo);
         user1.getAuthorities().add(authStudent);
         user1.setStudent(student);
         user2.getAuthorities().add(authTutor);

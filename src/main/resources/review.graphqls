@@ -1,0 +1,10 @@
+input InputReview{
+    description: String
+    rating: Float
+}
+
+type ReviewDTO{
+    description: String
+    rating: Float
+    student: StudentInCareDTO
+}
