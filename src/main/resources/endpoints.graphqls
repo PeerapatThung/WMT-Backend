@@ -6,6 +6,9 @@ schema {
 type Query{
     getStudent(id: Int): StudentDTO
     getTutor(id: Int): TutorDTO
+
+    getMatchTutorPaginationByName(queryFilter: QueryFilter, name: String): [TutorDTO]
+    getMatchTutorPaginationByStudentInput(queryFilter: QueryFilter, preference: InputPreference, subject: InputSubject): [TutorDTO]
 }
 
 type Mutation{
@@ -19,4 +22,9 @@ type Mutation{
     addStudentToTutor(studentid:Int, tutorid:Int): TutorDTO
 
     writeReview(tutorid:Int, studentid:Int, review:InputReview) : TutorDTO
+}
+
+input QueryFilter{
+    pageNo: Int
+    pageSize: Int
 }

@@ -1,4 +1,4 @@
-package com.project.demo.tutor.dao;
+package com.project.demo.tutormatch.service;
 
 import com.project.demo.preference.entity.Preference;
 import com.project.demo.student.entity.Student;
@@ -6,13 +6,7 @@ import com.project.demo.subject.entity.Subject;
 import com.project.demo.tutor.entity.Tutor;
 import org.springframework.data.domain.Page;
 
-public interface TutorDao {
-    Tutor createProfile(Tutor tutor);
-    Tutor getTutor(Long id);
-    Tutor editProfile(Tutor tutor);
-    Tutor deleteProfile(Tutor tutor);
-    Tutor addStudentToTutor(Student student, Tutor tutor);
-    Page<Tutor> getMatchTutorPaginationByName(Integer pageSize, Integer page, String name);
+public interface TutorMatchService {
+    Page<Tutor> getMatchTutorPaginationByName(Integer page, Integer pageSize, String name);
     Page<Tutor> getMatchTutorPaginationByStudentInput(Integer page, Integer pageSize, Preference preference, Subject subject);
-
 }
