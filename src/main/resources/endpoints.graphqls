@@ -22,6 +22,9 @@ type Mutation{
     addStudentToTutor(studentid:Int, tutorid:Int): TutorDTO
 
     writeReview(tutorid:Int, studentid:Int, review:InputReview) : TutorDTO
+    sendRequest(tutorid:Int, studentid:Int, request:SendRequest) : RequestDTO
+    rejectRequest(request:SendReply) : RequestDTO
+    acceptRequest(request:SendReply) : RequestDTO
 }
 
 input QueryFilter{

@@ -1,0 +1,16 @@
+input SendRequest{
+    message: String
+}
+
+input SendReply{
+    id: Int
+    reply: String
+}
+
+type RequestDTO{
+    message: String
+    reply: String
+    status: String
+    student: StudentInCareDTO
+    tutor: TeachingTutorDTO
+}

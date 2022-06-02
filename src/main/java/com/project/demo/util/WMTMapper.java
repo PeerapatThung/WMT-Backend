@@ -1,5 +1,7 @@
 package com.project.demo.util;
 
+import com.project.demo.request.dto.RequestDTO;
+import com.project.demo.request.entity.Request;
 import com.project.demo.student.dto.StudentDTO;
 import com.project.demo.student.entity.Student;
 import com.project.demo.tutor.dto.TutorDTO;
@@ -21,4 +23,5 @@ public interface WMTMapper {
     StudentDTO getStudentDTO(Student student);
     TutorDTO getTutorDTO(Tutor tutor);
     List<TutorDTO> getTutorsDTO(List<Tutor> tutors);
+    RequestDTO getRequestDTO(Request request);
 }
