@@ -1,4 +1,5 @@
 type SubjectDTO{
+    id: Int
     name: String
     category: CategoryDTO
 }

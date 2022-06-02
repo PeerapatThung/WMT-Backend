@@ -1,4 +1,5 @@
 type PreferenceDTO{
+    id: Int
     name: String
 }
 

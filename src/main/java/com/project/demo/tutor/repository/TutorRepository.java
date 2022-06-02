@@ -12,7 +12,11 @@ import java.util.List;
 
 public interface TutorRepository extends JpaRepository<Tutor, Long> {
     Page<Tutor> findByUser_DisplaynameIgnoreCaseContainingAndActiveTrue(String name, Pageable pageRequest);
-    Page<Tutor> findByPreferencesContainsAndSubjectsContainsAndActiveTrue
-            (Preference preferences, Subject subject, Pageable pageRequest);
+    Page<Tutor> findByPreferences_IdAndSubjects_IdAndActiveTrue
+            (Long preferences_id, Long subjects_id, Pageable pageable);
+    Page<Tutor> findByPreferences_IdAndActiveTrue
+            (Long preferences_id, Pageable pageable);
+    Page<Tutor> findBySubjects_IdAndActiveTrue
+            (Long subjects_id, Pageable pageable);
 }
 

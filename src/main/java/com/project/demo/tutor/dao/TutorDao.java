@@ -13,6 +13,6 @@ public interface TutorDao {
     Tutor deleteProfile(Tutor tutor);
     Tutor addStudentToTutor(Student student, Tutor tutor);
     Page<Tutor> getMatchTutorPaginationByName(Integer pageSize, Integer page, String name);
-    Page<Tutor> getMatchTutorPaginationByStudentInput(Integer page, Integer pageSize, Preference preference, Subject subject);
+    Page<Tutor> getMatchTutorPaginationByStudentInput(Integer pageSize, Integer page, Preference preference, Subject subject);
 
 }

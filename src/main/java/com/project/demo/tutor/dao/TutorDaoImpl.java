@@ -52,8 +52,14 @@ public class TutorDaoImpl implements TutorDao {
     }
 
     @Override
-    public Page<Tutor> getMatchTutorPaginationByStudentInput(Integer page, Integer pageSize, Preference preference, Subject subject) {
-        return tutorRepository.findByPreferencesContainsAndSubjectsContainsAndActiveTrue(preference, subject, PageRequest.of(page-1,pageSize));
+    public Page<Tutor> getMatchTutorPaginationByStudentInput(Integer pageSize, Integer page, Preference preference, Subject subject) {
+        if(preference.getId() == null){
+            return tutorRepository.findBySubjects_IdAndActiveTrue(subject.getId(), PageRequest.of(page-1,pageSize));
+        }
+        else if(subject.getId() == null){
+            return tutorRepository.findByPreferences_IdAndActiveTrue(preference.getId(), PageRequest.of(page-1,pageSize));
+        }
+        else return tutorRepository.findByPreferences_IdAndSubjects_IdAndActiveTrue(preference.getId(), subject.getId(), PageRequest.of(page-1,pageSize));
     }
 
 }
