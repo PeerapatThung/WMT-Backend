@@ -25,8 +25,6 @@ public class RequestDaoImpl implements RequestDao {
 
     @Override
     public Request writeRequest(Tutor tutor, Student student, Request request) {
-        tutorRepository.save(tutor);
-        studentRepository.save(student);
         return requestRepository.save(request);
     }
 

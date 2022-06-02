@@ -24,7 +24,7 @@ public class ReviewDaoImpl implements ReviewDao {
     @Override
     public Tutor writeReview(Tutor tutor, Student student, Review review) {
         reviewRepository.save(review);
-        studentRepository.save(student);
-        return tutorRepository.save(tutor);
+        Tutor tutorToReturn = tutorRepository.findById(tutor.getId()).orElse(null);
+        return tutorToReturn;
     }
 }
