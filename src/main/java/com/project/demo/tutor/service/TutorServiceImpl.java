@@ -82,4 +82,9 @@ public class TutorServiceImpl implements TutorService {
         student.getTutors().add(tutor);
         return tutorDao.addStudentToTutor(student, tutor);
     }
+
+    @Override
+    public Page<Tutor> getTutors(Integer page, Integer pageSize) {
+        return tutorDao.getTutors(page,pageSize);
+    }
 }

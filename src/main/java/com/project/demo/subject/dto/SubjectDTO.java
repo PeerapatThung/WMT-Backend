@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubjectDTO {
+    Long id;
     String name;
     CategoryDTO category;
 }

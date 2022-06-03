@@ -58,6 +58,10 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         Subject thermo, force, calculus, algebra;
         Student student;
         Tutor tutor;
+        student = Student.builder()
+                .build();
+        tutor = Tutor.builder()
+                .build();
         physics = Category.builder().name("Physics").build();
         maths = Category.builder().name("Mathematics").build();
         thermo = Subject.builder().name("Thermodynamics").build();
@@ -78,6 +82,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         categoryRepository.save(physics);
         categoryRepository.save(maths);
 
+        thermo.getTutors().add(tutor);
         subjectRepository.save(thermo);
         subjectRepository.save(force);
         subjectRepository.save(calculus);
@@ -87,6 +92,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         grading = Preference.builder().name("Grading Course").build();
 
         preferenceRepository.save(competitive);
+        grading.getTutors().add(tutor);
         preferenceRepository.save(grading);
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         Authority authStudent = Authority.builder().name(AuthorityName.ROLE_STUDENT).build();
@@ -122,10 +128,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
-        student = Student.builder()
-                .build();
-        tutor = Tutor.builder()
-                .build();
+
         authorityRepository.save(authStudent);
         authorityRepository.save(authTutor);
         authorityRepository.save(authAdmin);

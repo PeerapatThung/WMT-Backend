@@ -1,6 +1,7 @@
 package com.project.demo.tutor.entity;
 
 import com.project.demo.preference.entity.Preference;
+import com.project.demo.request.entity.Request;
 import com.project.demo.review.entity.Review;
 import com.project.demo.security.entity.User;
 import com.project.demo.student.entity.Student;
@@ -52,6 +53,11 @@ public class Tutor{
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
     List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Request> requests = new ArrayList<>();
 }
 
 

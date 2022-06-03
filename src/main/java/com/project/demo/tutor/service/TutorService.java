@@ -11,4 +11,5 @@ public interface TutorService {
     Tutor editProfile(Tutor tutor, Long id);
     Tutor deleteProfile(Long id);
     Tutor addStudentToTutor(Long studentid, Long tutorid);
+    Page<Tutor> getTutors(Integer page, Integer pageSize);
 }
