@@ -10,6 +10,8 @@ import com.project.demo.student.repository.StudentRepository;
 import com.project.demo.tutor.entity.Tutor;
 import com.project.demo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -41,5 +43,15 @@ public class RequestDaoImpl implements RequestDao {
     @Override
     public Request acceptRequest(Request request) {
         return requestRepository.save(request);
+    }
+
+    @Override
+    public Page<Request> getRequestsTutorSide(Integer pageSize, Integer page, Long tutorid) {
+        return requestRepository.findByTutor_Id(tutorid, PageRequest.of(page-1,pageSize));
+    }
+
+    @Override
+    public Page<Request> getRequestsStudentSide(Integer pageSize, Integer page,Long studentid) {
+        return requestRepository.findByStudent_Id(studentid, PageRequest.of(page-1,pageSize));
     }
 }

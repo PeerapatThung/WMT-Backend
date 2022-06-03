@@ -14,5 +14,6 @@ public interface TutorDao {
     Tutor addStudentToTutor(Student student, Tutor tutor);
     Page<Tutor> getMatchTutorPaginationByName(Integer pageSize, Integer page, String name);
     Page<Tutor> getMatchTutorPaginationByStudentInput(Integer pageSize, Integer page, Preference preference, Subject subject);
+    Page<Tutor> getTutors(Integer pageSize, Integer page);
 
 }

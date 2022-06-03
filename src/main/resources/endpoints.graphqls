@@ -6,9 +6,13 @@ schema {
 type Query{
     getStudent(id: Int): StudentDTO
     getTutor(id: Int): TutorDTO
+    getTutors(queryFilter: QueryFilter): [TutorDTO]
 
     getMatchTutorPaginationByName(queryFilter: QueryFilter, name: String): [TutorDTO]
     getMatchTutorPaginationByStudentInput(queryFilter: QueryFilter, preference: InputPreference, subject: InputSubject): [TutorDTO]
+
+    getRequestsTutorSide(queryFilter: QueryFilter, tutorid: Int): [RequestDTO]
+    getRequestsStudentSide(queryFilter: QueryFilter, studentid: Int): [RequestDTO]
 }
 
 type Mutation{

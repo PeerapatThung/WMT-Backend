@@ -62,4 +62,9 @@ public class TutorDaoImpl implements TutorDao {
         else return tutorRepository.findByPreferences_IdAndSubjects_IdAndActiveTrue(preference.getId(), subject.getId(), PageRequest.of(page-1,pageSize));
     }
 
+    @Override
+    public Page<Tutor> getTutors(Integer pageSize, Integer page) {
+        return tutorRepository.findAll(PageRequest.of(page-1, pageSize));
+    }
+
 }

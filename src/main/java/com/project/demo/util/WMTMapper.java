@@ -24,4 +24,5 @@ public interface WMTMapper {
     TutorDTO getTutorDTO(Tutor tutor);
     List<TutorDTO> getTutorsDTO(List<Tutor> tutors);
     RequestDTO getRequestDTO(Request request);
+    List<RequestDTO> getRequestsDTO(List<Request> requests);
 }

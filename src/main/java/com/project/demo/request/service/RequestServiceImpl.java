@@ -12,7 +12,9 @@ import com.project.demo.student.entity.Student;
 import com.project.demo.tutor.dao.TutorDao;
 import com.project.demo.tutor.entity.Tutor;
 import com.project.demo.tutor.service.TutorService;
+import com.project.demo.util.WMTMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -60,6 +62,16 @@ public class RequestServiceImpl implements RequestService {
         student.getTutors().add(tutor);
         tutorDao.addStudentToTutor(student, tutor);
         return requestDao.acceptRequest(requestToAccept);
+    }
+
+    @Override
+    public Page<Request> getRequestsTutorSide(Integer page, Integer pageSize, Long tutorid) {
+        return requestDao.getRequestsTutorSide(page,pageSize,tutorid);
+    }
+
+    @Override
+    public Page<Request> getRequestsStudentSide(Integer page, Integer pageSize, Long studentid) {
+        return requestDao.getRequestsStudentSide(page,pageSize,studentid);
     }
 
 
