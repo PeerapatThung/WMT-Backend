@@ -6,6 +6,11 @@ type UserDTO{
     authorities: [AuthorityDTO]
 }
 
+type User{
+    firstname: String
+    lastname: String
+    displayname: String
+}
 type AuthorityDTO{
     name: String
 }

@@ -67,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/organizers").permitAll()
                 .antMatchers(HttpMethod.POST, "/register/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/events").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/graphql").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated();
 

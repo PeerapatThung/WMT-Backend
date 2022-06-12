@@ -11,6 +11,13 @@ type TutorDTO{
     user: UserDTO
 }
 
+type Tutor{
+    id: Int
+    profileImg: String
+    overallRating: Float
+    user: User
+}
+
 input InputTutor{
     id: Int
     description: String
@@ -30,6 +37,11 @@ type TutorDetails{
     reviews: [ReviewDTO]
     active: Boolean
     user: UserDTO
+}
+
+type PageTutor {
+    totalElements: Int
+    content:[Tutor]
 }
 
 type StudentInCareDTO{
