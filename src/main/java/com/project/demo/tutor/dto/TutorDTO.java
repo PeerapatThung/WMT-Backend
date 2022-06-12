@@ -19,6 +19,7 @@ public class TutorDTO {
     Long id;
     String description;
     String profileImg;
+    double overallRating;
     List<StudentInCareDTO> students;
     List<SubjectDTO> subjects;
     List<PreferenceDTO> preferences;

@@ -2,6 +2,7 @@ type TutorDTO{
     id: Int
     description: String
     profileImg: String
+    overallRating: Float
     students: [StudentInCareDTO]
     subjects: [SubjectDTO]
     preferences: [PreferenceDTO]
@@ -22,9 +23,11 @@ type TutorDetails{
     id: Int
     description: String
     profileImg: String
+    overallRating: Float
     students: [StudentInCareDTO]
     subjects: [SubjectDTO]
     preferences: [PreferenceDTO]
+    reviews: [ReviewDTO]
     active: Boolean
     user: UserDTO
 }

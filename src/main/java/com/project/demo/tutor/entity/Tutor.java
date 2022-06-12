@@ -30,6 +30,12 @@ public class Tutor{
     String description;
     String profileImg;
     @Builder.Default
+    double overallRating = 0.0;
+    @Builder.Default
+    double totalRating = 0.0;
+    @Builder.Default
+    Integer reviewReceived = 0;
+    @Builder.Default
     boolean active = true;
 
     @ManyToMany
@@ -54,7 +60,7 @@ public class Tutor{
     @LazyCollection(LazyCollectionOption.FALSE)
     List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tutor")
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
     List<Request> requests = new ArrayList<>();

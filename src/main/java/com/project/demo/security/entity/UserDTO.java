@@ -15,6 +15,8 @@ public class UserDTO {
     String username;
     String password;
     String email;
+    String firstname;
+    String lastname;
     List<AuthorityDTO> authorities;
     String id;
     String displayname;

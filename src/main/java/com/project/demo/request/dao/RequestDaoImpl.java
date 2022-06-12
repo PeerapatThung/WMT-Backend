@@ -1,6 +1,7 @@
 package com.project.demo.request.dao;
 
 import com.project.demo.request.entity.Request;
+import com.project.demo.request.entity.RequestStatus;
 import com.project.demo.request.repository.RequestRepository;
 import com.project.demo.review.dao.ReviewDao;
 import com.project.demo.review.entity.Review;
@@ -47,7 +48,7 @@ public class RequestDaoImpl implements RequestDao {
 
     @Override
     public Page<Request> getRequestsTutorSide(Integer pageSize, Integer page, Long tutorid) {
-        return requestRepository.findByTutor_Id(tutorid, PageRequest.of(page-1,pageSize));
+        return requestRepository.findByTutor_IdAndStatus(tutorid, RequestStatus.Pending, PageRequest.of(page-1,pageSize));
     }
 
     @Override

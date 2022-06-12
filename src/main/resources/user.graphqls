@@ -1,4 +1,6 @@
 type UserDTO{
+    firstname: String
+    lastname: String
     displayname: String
     email: String
     authorities: [AuthorityDTO]
