@@ -16,10 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewDTO {
-    Long id;
-    String description;
-    double rating;
-    StudentInCareDTO student;
+    private Long id;
+    private String description;
+    private double rating;
+    private StudentInCareDTO student;
 }
 
 

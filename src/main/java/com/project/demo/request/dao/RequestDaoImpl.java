@@ -18,12 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RequestDaoImpl implements RequestDao {
     @Autowired
-    StudentRepository studentRepository;
-
-    @Autowired
-    TutorRepository tutorRepository;
-
-    @Autowired
     RequestRepository requestRepository;
 
     @Override

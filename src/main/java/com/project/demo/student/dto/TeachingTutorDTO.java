@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TeachingTutorDTO {
-    Long id;
-    UserDTO user;
+    private Long id;
+    private UserDTO user;
 }
 
 

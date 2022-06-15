@@ -20,8 +20,6 @@ public class ReviewServiceImpl implements ReviewService {
     TutorDao tutorDao;
     @Autowired
     ReviewDao reviewDao;
-    @Autowired
-    UserRepository userRepository;
 
     @Override
     public Tutor writeReview(Long tutorid, Long studentid, Review review) {

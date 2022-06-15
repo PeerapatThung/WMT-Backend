@@ -11,6 +11,7 @@ public interface TutorDao {
     Tutor getTutor(Long id);
     Tutor editProfile(Tutor tutor);
     Tutor deleteProfile(Tutor tutor);
+    Tutor undeleteProfile(Tutor tutor);
     Tutor addStudentToTutor(Student student, Tutor tutor);
     Page<Tutor> getMatchTutorPaginationByName(Integer pageSize, Integer page, String name);
     Page<Tutor> getMatchTutorPaginationByStudentInput(Integer pageSize, Integer page, Preference preference, Subject subject);

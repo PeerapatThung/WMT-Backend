@@ -41,6 +41,11 @@ public class TutorDaoImpl implements TutorDao {
     }
 
     @Override
+    public Tutor undeleteProfile(Tutor tutor) {
+        return tutorRepository.save(tutor);
+    }
+
+    @Override
     public Tutor addStudentToTutor(Student student, Tutor tutor) {
         studentRepository.save(student);
         return tutorRepository.save(tutor);

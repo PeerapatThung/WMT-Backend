@@ -29,4 +29,9 @@ public class StudentDaoImpl implements StudentDao{
     public Student deleteProfile(Student student) {
         return studentRepository.save(student);
     }
+
+    @Override
+    public Student undeleteProfile(Student student) {
+        return studentRepository.save(student);
+    }
 }

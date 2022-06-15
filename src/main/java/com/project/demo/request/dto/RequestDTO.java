@@ -16,12 +16,12 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RequestDTO {
-    Long id;
-    String message;
-    String reply;
-    TeachingTutorDTO tutor;
-    StudentInCareDTO student;
-    String status;
+    private Long id;
+    private String message;
+    private String reply;
+    private TeachingTutorDTO tutor;
+    private StudentInCareDTO student;
+    private String status;
 }
 
 

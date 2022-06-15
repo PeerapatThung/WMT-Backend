@@ -19,8 +19,6 @@ public class StudentMutation implements GraphQLMutationResolver{
     @Autowired
     StudentService studentService;
 
-    @Autowired
-    TutorService tutorService;
     @Transactional
     public StudentDTO createStudent(Student student, Long userid){
         Student newStudent = studentService.createProfile(student, userid);
@@ -34,6 +32,11 @@ public class StudentMutation implements GraphQLMutationResolver{
 
     public StudentDTO deleteStudent(Long id){
         Student deletingStudent = studentService.deleteProfile(id);
+        return WMTMapper.INSTANCE.getStudentDTO(deletingStudent);
+    }
+
+    public StudentDTO undeleteStudent(Long id){
+        Student deletingStudent = studentService.undeleteProfile(id);
         return WMTMapper.INSTANCE.getStudentDTO(deletingStudent);
     }
 

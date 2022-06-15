@@ -12,4 +12,5 @@ public interface StudentService {
     Student getStudent(Long id);
     Student editProfile(Student student, Long id);
     Student deleteProfile(Long id);
+    Student undeleteProfile(Long id);
 }

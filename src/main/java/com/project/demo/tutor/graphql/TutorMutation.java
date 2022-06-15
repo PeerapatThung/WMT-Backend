@@ -18,9 +18,6 @@ public class TutorMutation implements GraphQLMutationResolver{
     @Autowired
     TutorService tutorService;
 
-    @Autowired
-    StudentService studentService;
-
 //    @Transactional
     public TutorDTO createTutor(Tutor tutor, Long id) throws InterruptedException {
         Tutor newTutor = tutorService.createProfile(tutor, id);
@@ -37,9 +34,9 @@ public class TutorMutation implements GraphQLMutationResolver{
         return WMTMapper.INSTANCE.getTutorDTO(deletingTutor);
     }
 
-    public TutorDTO addStudentToTutor(Long studentid, Long tutorid){
-        Tutor tutor = tutorService.addStudentToTutor(studentid, tutorid);
-        return WMTMapper.INSTANCE.getTutorDTO(tutor);
+    public TutorDTO undeleteTutor(Long id){
+        Tutor deletingTutor = tutorService.undeleteTutor(id);
+        return WMTMapper.INSTANCE.getTutorDTO(deletingTutor);
     }
 
 }

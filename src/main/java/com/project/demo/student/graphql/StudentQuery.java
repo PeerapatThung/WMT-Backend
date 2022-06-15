@@ -19,7 +19,7 @@ public class StudentQuery implements GraphQLQueryResolver {
     StudentService studentService;
 
     @Transactional
-    StudentDTO getStudent(Long id) {
+    public StudentDTO getStudent(Long id) {
         Student student = studentService.getStudent(id);
         return WMTMapper.INSTANCE.getStudentDTO(student);
     }

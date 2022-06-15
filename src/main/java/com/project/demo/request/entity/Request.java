@@ -23,14 +23,14 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
-    String message;
-    String reply;
+    private String message;
+    private String reply;
     @ManyToOne
-    Tutor tutor;
+    private Tutor tutor;
     @ManyToOne
-    Student student;
+    private Student student;
     @Enumerated(EnumType.STRING)
-    RequestStatus status;
+    private RequestStatus status;
 }
 
 

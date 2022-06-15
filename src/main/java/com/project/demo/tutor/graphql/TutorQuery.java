@@ -19,7 +19,7 @@ public class TutorQuery implements GraphQLQueryResolver {
     TutorService tutorService;
 
     @Transactional
-    TutorDTO getTutor(Long id) {
+    public TutorDTO getTutor(Long id) {
         Tutor tutor = tutorService.getTutor(id);
         return WMTMapper.INSTANCE.getTutorDTO(tutor);
     }
@@ -29,7 +29,7 @@ public class TutorQuery implements GraphQLQueryResolver {
 //        return WMTMapper.INSTANCE.getTutorsDTO(tutors.getContent());
 //    }
 
-    Page<Tutor> getTutors(QueryFilter queryFilter) {
+    public Page<Tutor> getTutors(QueryFilter queryFilter) {
         return tutorService.getTutors(queryFilter.getPageSize(), queryFilter.getPageNo());
     }
 

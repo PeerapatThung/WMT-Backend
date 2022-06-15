@@ -14,8 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentInCareDTO {
-    Long id;
-    UserDTO user;
+    private Long id;
+    private UserDTO user;
 }
 
 

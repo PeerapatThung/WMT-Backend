@@ -19,9 +19,6 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDao studentDao;
-
-    @Autowired
-    TutorDao tutorDao;
     @Autowired
     UserRepository userRepository;
     @Override
@@ -56,4 +53,12 @@ public class StudentServiceImpl implements StudentService {
         deletingStudent.setActive(false);
         return studentDao.deleteProfile(deletingStudent);
     }
+
+    @Override
+    public Student undeleteProfile(Long id) {
+        Student deletingStudent = studentDao.getStudent(id);
+        deletingStudent.setActive(true);
+        return studentDao.undeleteProfile(deletingStudent);
+    }
+
 }

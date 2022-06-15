@@ -27,43 +27,43 @@ public class Tutor{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
-    String description;
-    String profileImg;
+    private String description;
+    private String profileImg;
     @Builder.Default
-    double overallRating = 0.0;
+    private double overallRating = 0.0;
     @Builder.Default
-    double totalRating = 0.0;
+    private double totalRating = 0.0;
     @Builder.Default
-    Integer reviewReceived = 0;
+    private Integer reviewReceived = 0;
     @Builder.Default
-    boolean active = true;
+    private boolean active = true;
 
     @ManyToMany
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<Preference> preferences = new ArrayList<>();
+    private List<Preference> preferences = new ArrayList<>();
 
     @ManyToMany
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<Subject> subjects = new ArrayList<>();
+    private List<Subject> subjects = new ArrayList<>();
 
     @ManyToMany
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<Student> students = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
     @OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL)
-    User user;
+    private User user;
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<Review> reviews = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "tutor")
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<Request> requests = new ArrayList<>();
+    private List<Request> requests = new ArrayList<>();
 }
 
 

@@ -20,15 +20,15 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
-    String description;
+    private String description;
     @Builder.Default
-    double rating = 1.0;
+    private double rating = 1.0;
 
     @ManyToOne
-    Tutor tutor;
+    private Tutor tutor;
 
     @ManyToOne
-    Student student;
+    private Student student;
 }
 
 

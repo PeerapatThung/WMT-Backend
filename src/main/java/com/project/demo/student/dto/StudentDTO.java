@@ -14,12 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDTO {
-    Long id;
-    String description;
-    String profileImg;
-    boolean active;
-    List<TeachingTutorDTO> tutors;
-    UserDTO user;
+    private Long id;
+    private String description;
+    private String profileImg;
+    private boolean active;
+    private List<TeachingTutorDTO> tutors;
+    private UserDTO user;
 }
 
 

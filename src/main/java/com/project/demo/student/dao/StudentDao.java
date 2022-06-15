@@ -7,4 +7,5 @@ public interface StudentDao {
     Student getStudent(Long id);
     Student editProfile(Student student);
     Student deleteProfile(Student student);
+    Student undeleteProfile(Student student);
 }

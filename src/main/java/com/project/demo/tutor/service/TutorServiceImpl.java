@@ -21,9 +21,6 @@ public class TutorServiceImpl implements TutorService {
     TutorDao tutorDao;
 
     @Autowired
-    StudentDao studentDao;
-
-    @Autowired
     UserRepository userRepository;
     @Override
     public Tutor createProfile(Tutor tutor, Long userid) {
@@ -75,12 +72,10 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public Tutor addStudentToTutor(Long studentid, Long tutorid) {
-        Tutor tutor = tutorDao.getTutor(tutorid);
-        Student student = studentDao.getStudent(studentid);
-        tutor.getStudents().add(student);
-        student.getTutors().add(tutor);
-        return tutorDao.addStudentToTutor(student, tutor);
+    public Tutor undeleteTutor(Long id) {
+        Tutor deletingTutor = tutorDao.getTutor(id);
+        deletingTutor.setActive(true);
+        return tutorDao.undeleteProfile(deletingTutor);
     }
 
     @Override
