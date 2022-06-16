@@ -18,8 +18,8 @@ public class TutorMutation implements GraphQLMutationResolver{
     @Autowired
     TutorService tutorService;
 
-//    @Transactional
-    public TutorDTO createTutor(Tutor tutor, Long id) throws InterruptedException {
+    @Transactional
+    public TutorDTO createTutor(Tutor tutor, Long id){
         Tutor newTutor = tutorService.createProfile(tutor, id);
         return WMTMapper.INSTANCE.getTutorDTO(newTutor);
     }

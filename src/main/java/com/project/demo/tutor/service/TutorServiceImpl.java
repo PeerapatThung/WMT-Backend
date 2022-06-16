@@ -1,6 +1,7 @@
 package com.project.demo.tutor.service;
 
 import com.project.demo.preference.entity.Preference;
+import com.project.demo.preference.repository.PreferenceRepository;
 import com.project.demo.security.entity.User;
 import com.project.demo.security.repository.UserRepository;
 import com.project.demo.student.dao.StudentDao;

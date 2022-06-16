@@ -33,7 +33,7 @@ public class Student {
     @Builder.Default
             @LazyCollection(LazyCollectionOption.FALSE)
     private List<Tutor> tutors = new ArrayList<>();
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "student")
     private User user;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)

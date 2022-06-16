@@ -366,8 +366,6 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         userRepository.save(user13);
         studentRepository.save(student1);
         studentRepository.save(student2);
-        studentRepository.save(student4);
-        studentRepository.save(student5);
         tutorRepository.save(tutor1);
         tutorRepository.save(tutor2);
         tutorRepository.save(tutor3);
@@ -375,5 +373,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         tutorRepository.save(tutor5);
         student3.getTutors().add(tutor3);
         studentRepository.save(student3);
+        studentRepository.save(student4);
+        studentRepository.save(student5);   
     }
 }

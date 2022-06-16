@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentInCareDTO {
     private Long id;
+    private String profileImg;
     private UserDTO user;
 }
 

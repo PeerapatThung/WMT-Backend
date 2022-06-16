@@ -7,6 +7,12 @@ type StudentDTO{
     user: UserDTO
 }
 
+type Student{
+    id: Int
+    profileImg: String
+    user: User
+}
+
 input InputStudent{
     description: String
     profileImg: String
@@ -15,3 +21,9 @@ input InputStudent{
 type TeachingTutorDTO{
     user: UserDTO
 }
+
+type PageStudent {
+    totalElements: Int
+    content:[Student]
+}
+

@@ -22,7 +22,8 @@ public class TutorDaoImpl implements TutorDao {
 
     @Override
     public Tutor createProfile(Tutor tutor) {
-        return tutorRepository.save(tutor);
+        tutorRepository.save(tutor);
+        return tutorRepository.findById(tutor.getId()).orElse(null);
     }
 
     @Override
