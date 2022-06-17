@@ -46,5 +46,6 @@ type PageTutor {
 
 type StudentInCareDTO{
     id: Int
+    profileImg: String
     user: UserDTO
 }

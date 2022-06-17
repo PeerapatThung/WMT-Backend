@@ -24,8 +24,8 @@ public class TutorQuery implements GraphQLQueryResolver {
         return WMTMapper.INSTANCE.getTutorDTO(tutor);
     }
 
-//    List<TutorDTO> getTutors(QueryFilter queryFilter) {
-//        Page<Tutor> tutors = tutorService.getTutors(queryFilter.getPageSize(), queryFilter.getPageNo());
+//    List<TutorDTO> getAllTutors() {
+//        List<Tutor> tutors = tutorService.getTutors(queryFilter.getPageSize(), queryFilter.getPageNo());
 //        return WMTMapper.INSTANCE.getTutorsDTO(tutors.getContent());
 //    }
 
