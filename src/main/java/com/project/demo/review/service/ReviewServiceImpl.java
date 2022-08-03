@@ -20,8 +20,6 @@ public class ReviewServiceImpl implements ReviewService {
     TutorDao tutorDao;
     @Autowired
     ReviewDao reviewDao;
-    @Autowired
-    UserRepository userRepository;
 
     @Override
     public Tutor writeReview(Long tutorid, Long studentid, Review review) {
@@ -31,7 +29,12 @@ public class ReviewServiceImpl implements ReviewService {
                 .description(review.getDescription())
                 .rating(review.getRating())
                 .build();
-        tutorBeingWriteTo.getReviews().add(review);
+//        tutorBeingWriteTo.getReviews().add(review);
+        double total = tutorBeingWriteTo.getTotalRating() + review.getRating();
+        Integer numReview = tutorBeingWriteTo.getReviewReceived() + 1;
+        tutorBeingWriteTo.setReviewReceived(numReview);
+        tutorBeingWriteTo.setOverallRating(total / numReview);
+        tutorBeingWriteTo.setTotalRating(total);
         studentWriting.getReviews().add(review);
         reviewToWrite.setStudent(studentWriting);
         reviewToWrite.setTutor(tutorBeingWriteTo);

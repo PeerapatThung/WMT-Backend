@@ -11,12 +11,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TutorRepository extends JpaRepository<Tutor, Long> {
-    Page<Tutor> findByUser_DisplaynameIgnoreCaseContainingAndActiveTrue(String name, Pageable pageRequest);
+    Page<Tutor> findByUser_DisplaynameIgnoreCaseContainingOrUser_FirstnameIgnoreCaseContainingOrUser_LastnameIgnoreCaseContainingAndActiveTrue
+            (String displayname, String firstname, String lastname, Pageable pageRequest);
     Page<Tutor> findByPreferences_IdAndSubjects_IdAndActiveTrue
             (Long preferences_id, Long subjects_id, Pageable pageable);
     Page<Tutor> findByPreferences_IdAndActiveTrue
             (Long preferences_id, Pageable pageable);
     Page<Tutor> findBySubjects_IdAndActiveTrue
             (Long subjects_id, Pageable pageable);
+    Page<Tutor> findByActiveTrue(Pageable pageable);
 }
 

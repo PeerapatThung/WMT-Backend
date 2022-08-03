@@ -22,7 +22,8 @@ public class TutorDaoImpl implements TutorDao {
 
     @Override
     public Tutor createProfile(Tutor tutor) {
-        return tutorRepository.save(tutor);
+        tutorRepository.save(tutor);
+        return tutorRepository.findById(tutor.getId()).orElse(null);
     }
 
     @Override
@@ -41,6 +42,11 @@ public class TutorDaoImpl implements TutorDao {
     }
 
     @Override
+    public Tutor undeleteProfile(Tutor tutor) {
+        return tutorRepository.save(tutor);
+    }
+
+    @Override
     public Tutor addStudentToTutor(Student student, Tutor tutor) {
         studentRepository.save(student);
         return tutorRepository.save(tutor);
@@ -48,7 +54,8 @@ public class TutorDaoImpl implements TutorDao {
 
     @Override
     public Page<Tutor> getMatchTutorPaginationByName(Integer pageSize, Integer page, String name) {
-        return tutorRepository.findByUser_DisplaynameIgnoreCaseContainingAndActiveTrue(name, PageRequest.of(page-1,pageSize));
+        return tutorRepository.findByUser_DisplaynameIgnoreCaseContainingOrUser_FirstnameIgnoreCaseContainingOrUser_LastnameIgnoreCaseContainingAndActiveTrue
+                (name, name, name, PageRequest.of(page-1,pageSize));
     }
 
     @Override
@@ -64,7 +71,7 @@ public class TutorDaoImpl implements TutorDao {
 
     @Override
     public Page<Tutor> getTutors(Integer pageSize, Integer page) {
-        return tutorRepository.findAll(PageRequest.of(page-1, pageSize));
+        return tutorRepository.findByActiveTrue(PageRequest.of(page-1, pageSize));
     }
 
 }

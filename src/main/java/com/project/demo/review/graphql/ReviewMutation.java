@@ -20,9 +20,6 @@ public class ReviewMutation implements GraphQLMutationResolver{
     @Autowired
     ReviewService reviewService;
 
-    @Autowired
-    TutorService tutorService;
-
     public TutorDTO writeReview(Long tutorid, Long studentid, Review review){
         Tutor tutor = reviewService.writeReview(tutorid, studentid, review);
         return WMTMapper.INSTANCE.getTutorDTO(tutor);

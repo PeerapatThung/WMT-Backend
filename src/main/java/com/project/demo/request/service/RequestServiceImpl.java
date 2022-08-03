@@ -25,8 +25,6 @@ public class RequestServiceImpl implements RequestService {
     TutorDao tutorDao;
     @Autowired
     RequestDao requestDao;
-    @Autowired
-    UserRepository userRepository;
 
     @Override
     public Request writeRequest(Long tutorid, Long studentid, Request request) {

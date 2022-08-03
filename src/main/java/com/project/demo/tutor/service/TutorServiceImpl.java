@@ -1,6 +1,7 @@
 package com.project.demo.tutor.service;
 
 import com.project.demo.preference.entity.Preference;
+import com.project.demo.preference.repository.PreferenceRepository;
 import com.project.demo.security.entity.User;
 import com.project.demo.security.repository.UserRepository;
 import com.project.demo.student.dao.StudentDao;
@@ -19,9 +20,6 @@ import java.util.List;
 public class TutorServiceImpl implements TutorService {
     @Autowired
     TutorDao tutorDao;
-
-    @Autowired
-    StudentDao studentDao;
 
     @Autowired
     UserRepository userRepository;
@@ -75,12 +73,10 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public Tutor addStudentToTutor(Long studentid, Long tutorid) {
-        Tutor tutor = tutorDao.getTutor(tutorid);
-        Student student = studentDao.getStudent(studentid);
-        tutor.getStudents().add(student);
-        student.getTutors().add(tutor);
-        return tutorDao.addStudentToTutor(student, tutor);
+    public Tutor undeleteTutor(Long id) {
+        Tutor deletingTutor = tutorDao.getTutor(id);
+        deletingTutor.setActive(true);
+        return tutorDao.undeleteProfile(deletingTutor);
     }
 
     @Override

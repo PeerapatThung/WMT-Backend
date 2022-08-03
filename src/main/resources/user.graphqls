@@ -1,9 +1,16 @@
 type UserDTO{
+    firstname: String
+    lastname: String
     displayname: String
     email: String
     authorities: [AuthorityDTO]
 }
 
+type User{
+    firstname: String
+    lastname: String
+    displayname: String
+}
 type AuthorityDTO{
     name: String
 }

@@ -10,6 +10,6 @@ public interface TutorService {
     Tutor getTutor(Long id);
     Tutor editProfile(Tutor tutor, Long id);
     Tutor deleteProfile(Long id);
-    Tutor addStudentToTutor(Long studentid, Long tutorid);
+    Tutor undeleteTutor(Long id);
     Page<Tutor> getTutors(Integer page, Integer pageSize);
 }

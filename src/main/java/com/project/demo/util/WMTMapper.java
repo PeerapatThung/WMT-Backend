@@ -1,9 +1,15 @@
 package com.project.demo.util;
 
+import com.project.demo.preference.dto.PreferenceDTO;
+import com.project.demo.preference.entity.Preference;
 import com.project.demo.request.dto.RequestDTO;
 import com.project.demo.request.entity.Request;
 import com.project.demo.student.dto.StudentDTO;
 import com.project.demo.student.entity.Student;
+import com.project.demo.subject.dto.CategoryDTO;
+import com.project.demo.subject.dto.SubjectDTO;
+import com.project.demo.subject.entity.Category;
+import com.project.demo.subject.entity.Subject;
 import com.project.demo.tutor.dto.TutorDTO;
 import com.project.demo.tutor.entity.Tutor;
 import org.mapstruct.Mapper;
@@ -25,4 +31,7 @@ public interface WMTMapper {
     List<TutorDTO> getTutorsDTO(List<Tutor> tutors);
     RequestDTO getRequestDTO(Request request);
     List<RequestDTO> getRequestsDTO(List<Request> requests);
+    List<SubjectDTO> getSubjectsDTO(List<Subject> subjects);
+    List<PreferenceDTO> getPreferencesDTO(List<Preference> preference);
+    List<CategoryDTO> getCategoriesDTO(List<Category> categories);
 }

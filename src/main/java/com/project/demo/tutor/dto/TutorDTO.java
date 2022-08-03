@@ -16,15 +16,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TutorDTO {
-    Long id;
-    String description;
-    String profileImg;
-    List<StudentInCareDTO> students;
-    List<SubjectDTO> subjects;
-    List<PreferenceDTO> preferences;
-    boolean active;
-    UserDTO user;
-    List<ReviewDTO> reviews;
+    private Long id;
+    private String description;
+    private String profileImg;
+    private double overallRating;
+    private List<StudentInCareDTO> students;
+    private List<SubjectDTO> subjects;
+    private List<PreferenceDTO> preferences;
+    private boolean active;
+    private UserDTO user;
+    private List<ReviewDTO> reviews;
 }
 
 

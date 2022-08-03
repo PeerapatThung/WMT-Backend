@@ -10,6 +10,7 @@ import com.project.demo.tutor.dao.TutorDao;
 import com.project.demo.tutor.entity.Tutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,9 +20,6 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDao studentDao;
-
-    @Autowired
-    TutorDao tutorDao;
     @Autowired
     UserRepository userRepository;
     @Override
@@ -55,5 +53,17 @@ public class StudentServiceImpl implements StudentService {
         Student deletingStudent = studentDao.getStudent(id);
         deletingStudent.setActive(false);
         return studentDao.deleteProfile(deletingStudent);
+    }
+
+    @Override
+    public Student undeleteProfile(Long id) {
+        Student deletingStudent = studentDao.getStudent(id);
+        deletingStudent.setActive(true);
+        return studentDao.undeleteProfile(deletingStudent);
+    }
+
+    @Override
+    public Page<Student> getStudents(Integer page, Integer pageSize) {
+        return studentDao.getStudents(page,pageSize);
     }
 }

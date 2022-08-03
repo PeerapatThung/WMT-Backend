@@ -21,8 +21,6 @@ import java.util.List;
 @Component
 public class TutorMatchQuery implements GraphQLQueryResolver {
     @Autowired
-    StudentService studentService;
-    @Autowired
     TutorMatchService tutorMatchService;
 
     @Transactional
