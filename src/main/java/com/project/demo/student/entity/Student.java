@@ -1,6 +1,9 @@
 package com.project.demo.student.entity;
 
+import com.project.demo.request.entity.Request;
+import com.project.demo.review.entity.Review;
 import com.project.demo.security.entity.User;
+import com.project.demo.tutor.entity.Tutor;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
@@ -21,9 +24,27 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
+    private String description;
+    private String profileImg;
+    @Builder.Default
+    private boolean active = true;
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
-    User user;
+    @ManyToMany
+    @Builder.Default
+            @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Tutor> tutors = new ArrayList<>();
+    @OneToOne(mappedBy = "student")
+    private User user;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Request> requests = new ArrayList<>();
 }
 
 

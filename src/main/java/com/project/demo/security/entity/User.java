@@ -3,6 +3,7 @@ package com.project.demo.security.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.demo.student.entity.Student;
+import com.project.demo.tutor.entity.Tutor;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +46,10 @@ public class User {
     @NotNull
     private String lastname;
 
+    @Column(name = "DISPLAYNAME", length = 50)
+    @NotNull
+    private String displayname;
+
     @Column(name = "EMAIL", length = 50)
     @NotNull
     private String email;
@@ -64,5 +69,7 @@ public class User {
 
 	@OneToOne
     Student student;
+	@OneToOne
+    Tutor tutor;
 
 }

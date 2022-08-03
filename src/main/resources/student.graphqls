@@ -1,0 +1,29 @@
+type StudentDTO{
+    id: Int
+    description: String
+    profileImg: String
+    active: Boolean
+    tutors: [TeachingTutorDTO]
+    user: UserDTO
+}
+
+type Student{
+    id: Int
+    profileImg: String
+    user: User
+}
+
+input InputStudent{
+    description: String
+    profileImg: String
+}
+
+type TeachingTutorDTO{
+    user: UserDTO
+}
+
+type PageStudent {
+    totalElements: Int
+    content:[Student]
+}
+

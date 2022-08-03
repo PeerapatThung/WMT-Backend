@@ -1,0 +1,14 @@
+type SubjectDTO{
+    id: Int
+    name: String
+    category: CategoryDTO
+}
+
+type CategoryDTO{
+    id: Int
+    name: String
+}
+
+input InputSubject{
+    id: Int
+}

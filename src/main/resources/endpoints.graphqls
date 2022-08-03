@@ -1,0 +1,43 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query{
+    getStudent(id: Int): StudentDTO
+    getTutor(id: Int): TutorDTO
+    getTutors(queryFilter: QueryFilter): PageTutor
+    getStudents(queryFilter: QueryFilter) : PageStudent
+
+    getMatchTutorPaginationByName(queryFilter: QueryFilter, name: String): [TutorDTO]
+    getMatchTutorPaginationByStudentInput(queryFilter: QueryFilter, preference: InputPreference, subject: InputSubject): [TutorDTO]
+
+    getRequestsTutorSide(queryFilter: QueryFilter, tutorid: Int): [RequestDTO]
+    getRequestsStudentSide(queryFilter: QueryFilter, studentid: Int): [RequestDTO]
+
+    getCategories: [CategoryDTO]
+    getSubjects(categoryid : Int): [SubjectDTO]
+    getPreferences: [PreferenceDTO]
+}
+
+type Mutation{
+    createStudent(student:InputStudent, userid:Int): StudentDTO
+    editStudent(student:InputStudent, id:Int): StudentDTO
+    deleteStudent(id:Int): StudentDTO
+    undeleteStudent(id:Int) : StudentDTO
+
+    createTutor(tutor:InputTutor, userid:Int): TutorDTO
+    editTutor(tutor:InputTutor, id:Int): TutorDTO
+    deleteTutor(id:Int): TutorDTO
+    undeleteTutor(id:Int) : TutorDTO
+
+    writeReview(tutorid:Int, studentid:Int, review:InputReview) : TutorDTO
+    sendRequest(tutorid:Int, studentid:Int, request:SendRequest) : RequestDTO
+    rejectRequest(request:SendReply) : RequestDTO
+    acceptRequest(request:SendReply) : RequestDTO
+}
+
+input QueryFilter{
+    pageNo: Int
+    pageSize: Int
+}

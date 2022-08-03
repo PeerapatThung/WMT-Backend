@@ -1,6 +1,10 @@
 package com.project.demo.security.controller;
 
 
+import com.project.demo.student.entity.Student;
+import com.project.demo.student.repository.StudentRepository;
+import com.project.demo.tutor.entity.Tutor;
+import com.project.demo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +53,12 @@ public class AuthenticationRestController {
 
     @Autowired
     AuthorityRepository authorityRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    TutorRepository tutorRepository;
     @PostMapping("${jwt.route.authentication.path}")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 
@@ -67,11 +77,9 @@ public class AuthenticationRestController {
         Map result = new HashMap();
         result.put("token", token);
         User user = userRepository.findById(((JwtUser) userDetails).getId()).orElse(null);
-//        if(user.getPatient() != null) {
-//            result.put("user", LabMapper.INSTANCE.getPatientAuthDTO(user.getPatient()));
-//        }else if(user.getDoctor() != null) {
-//            result.put("user", LabMapper.INSTANCE.getDoctorAuthDTO(user.getDoctor()));
-//        }
+        if(user != null) {
+            result.put("user", WMTMapper.INSTANCE.getUserDto(user));
+        }
         return ResponseEntity.ok(result);
     }
 
@@ -81,12 +89,53 @@ public class AuthenticationRestController {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
             return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
         } else {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @PostMapping("/register/{role}")
+    public ResponseEntity<?> addUser(@PathVariable(value = "role", required = true) String role,
+            @RequestBody JwtAuthenticationRequest authenticationRequest) {
+        if(userRepository.findByUsername(authenticationRequest.getUsername()) == null){
+            User user = new User();
+            if(String.valueOf(role).equals("student")){
+                Authority authUser = Authority.builder().name(AuthorityName.ROLE_STUDENT).build();
+                authorityRepository.save(authUser);
+                user.getAuthorities().add(authUser);
+            }
+            else if(String.valueOf(role).equals("tutor")){
+                Authority authUser = Authority.builder().name(AuthorityName.ROLE_TUTOR).build();
+                authorityRepository.save(authUser);
+                user.getAuthorities().add(authUser);
+            }
+            PasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(authenticationRequest.getPassword()));
+            user.setEmail(authenticationRequest.getEmail());
+            user.setUsername(authenticationRequest.getUsername());
+            user.setFirstname(authenticationRequest.getFirstname());
+            user.setLastname(authenticationRequest.getLastname());
+            user.setDisplayname(authenticationRequest.getDisplayname());
+            user.setEnabled(true);
+            userRepository.save(user);
+            if(String.valueOf(role).equals("student")) {
+                Student student = Student.builder()
+                        .build();
+                student.setUser(user);
+                studentRepository.save(student);
+            }
+            else if(String.valueOf(role).equals("tutor")){
+                Tutor tutor = Tutor.builder()
+                        .build();
+                tutor.setUser(user);
+                tutorRepository.save(tutor);
+            }
+            return ResponseEntity.ok(WMTMapper.INSTANCE.getUserDto(user));
+
+        }
+        else return (ResponseEntity<?>) ResponseEntity.badRequest();
     }
 }

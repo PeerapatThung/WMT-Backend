@@ -1,0 +1,51 @@
+type TutorDTO{
+    id: Int
+    description: String
+    profileImg: String
+    overallRating: Float
+    students: [StudentInCareDTO]
+    subjects: [SubjectDTO]
+    preferences: [PreferenceDTO]
+    reviews: [ReviewDTO]
+    active: Boolean
+    user: UserDTO
+}
+
+type Tutor{
+    id: Int
+    profileImg: String
+    overallRating: Float
+    user: User
+}
+
+input InputTutor{
+    id: Int
+    description: String
+    profileImg: String
+    preferences: [InputPreference]
+    subjects: [InputSubject]
+}
+
+type TutorDetails{
+    id: Int
+    description: String
+    profileImg: String
+    overallRating: Float
+    students: [StudentInCareDTO]
+    subjects: [SubjectDTO]
+    preferences: [PreferenceDTO]
+    reviews: [ReviewDTO]
+    active: Boolean
+    user: UserDTO
+}
+
+type PageTutor {
+    totalElements: Int
+    content:[Tutor]
+}
+
+type StudentInCareDTO{
+    id: Int
+    profileImg: String
+    user: UserDTO
+}
