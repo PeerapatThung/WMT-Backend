@@ -9,7 +9,7 @@ type Query{
     getTutors(queryFilter: QueryFilter): PageTutor
     getStudents(queryFilter: QueryFilter) : PageStudent
 
-    getMatchTutorPaginationByName(queryFilter: QueryFilter, name: String): [TutorDTO]
+    getMatchTutorPaginationByName(queryFilter: QueryFilter, name: String): PageTutor
     getMatchTutorPaginationByStudentInput(queryFilter: QueryFilter, preference: InputPreference, subject: InputSubject): [TutorDTO]
 
     getRequestsTutorSide(queryFilter: QueryFilter, tutorid: Int): [RequestDTO]

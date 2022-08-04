@@ -54,7 +54,7 @@ public class TutorDaoImpl implements TutorDao {
 
     @Override
     public Page<Tutor> getMatchTutorPaginationByName(Integer pageSize, Integer page, String name) {
-        return tutorRepository.findByUser_DisplaynameIgnoreCaseContainingOrUser_FirstnameIgnoreCaseContainingOrUser_LastnameIgnoreCaseContainingAndActiveTrue
+        return tutorRepository.findByActiveTrueAndUser_DisplaynameIgnoreCaseContainingOrActiveTrueAndUser_FirstnameIgnoreCaseContainingOrActiveTrueAndUser_LastnameIgnoreCaseContaining
                 (name, name, name, PageRequest.of(page-1,pageSize));
     }
 

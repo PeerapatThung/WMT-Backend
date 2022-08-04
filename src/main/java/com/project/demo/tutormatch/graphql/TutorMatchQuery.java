@@ -24,9 +24,8 @@ public class TutorMatchQuery implements GraphQLQueryResolver {
     TutorMatchService tutorMatchService;
 
     @Transactional
-    List<TutorDTO> getMatchTutorPaginationByName(QueryFilter queryFilter, String name) {
-        Page<Tutor> tutors = tutorMatchService.getMatchTutorPaginationByName(queryFilter.getPageSize(), queryFilter.getPageNo(), name);
-        return WMTMapper.INSTANCE.getTutorsDTO(tutors.getContent());
+    Page<Tutor> getMatchTutorPaginationByName(QueryFilter queryFilter, String name) {
+        return tutorMatchService.getMatchTutorPaginationByName(queryFilter.getPageSize(), queryFilter.getPageNo(), name);
     }
     @Transactional
     List<TutorDTO> getMatchTutorPaginationByStudentInput(QueryFilter queryFilter, Preference preference, Subject subject) {
