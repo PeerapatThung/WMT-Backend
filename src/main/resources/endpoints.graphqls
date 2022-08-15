@@ -12,8 +12,9 @@ type Query{
     getMatchTutorPaginationByName(queryFilter: QueryFilter, name: String): PageTutor
     getMatchTutorPaginationByStudentInput(queryFilter: QueryFilter, preference: InputPreference, subject: InputSubject): PageTutor
 
-    getRequestsTutorSide(queryFilter: QueryFilter, tutorid: Int): [RequestDTO]
-    getRequestsStudentSide(queryFilter: QueryFilter, studentid: Int): [RequestDTO]
+    getRequestsTutorSide(queryFilter: QueryFilter, tutorid: Int): PageRequest
+    getRequestsStudentSide(queryFilter: QueryFilter, studentid: Int): PageRequest
+    getRequest(requestid: Int): RequestDTO
 
     getCategories: [CategoryDTO]
     getSubjects(categoryid : Int): [SubjectDTO]

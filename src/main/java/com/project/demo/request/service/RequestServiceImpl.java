@@ -63,6 +63,11 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    public Request getRequest(Long id) {
+        return requestDao.getRequest(id);
+    }
+
+    @Override
     public Page<Request> getRequestsTutorSide(Integer page, Integer pageSize, Long tutorid) {
         return requestDao.getRequestsTutorSide(page,pageSize,tutorid);
     }

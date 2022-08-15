@@ -1,6 +1,7 @@
 package com.project.demo.tutor.dto;
 
 import com.project.demo.preference.dto.PreferenceDTO;
+import com.project.demo.request.dto.RequestDTO;
 import com.project.demo.review.dto.ReviewDTO;
 import com.project.demo.security.entity.UserDTO;
 import com.project.demo.subject.dto.SubjectDTO;
@@ -23,6 +24,7 @@ public class TutorDTO {
     private List<StudentInCareDTO> students;
     private List<SubjectDTO> subjects;
     private List<PreferenceDTO> preferences;
+    private List<RequestDTO> requests;
     private boolean active;
     private UserDTO user;
     private List<ReviewDTO> reviews;

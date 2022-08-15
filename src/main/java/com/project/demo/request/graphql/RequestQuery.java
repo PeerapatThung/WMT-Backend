@@ -23,14 +23,19 @@ public class RequestQuery implements GraphQLQueryResolver {
     RequestService requestService;
 
     @Transactional
-    List<RequestDTO> getRequestsTutorSide(QueryFilter queryFilter, Long tutorid) {
-        Page<Request> request = requestService.getRequestsTutorSide(queryFilter.getPageSize(), queryFilter.getPageNo(), tutorid);
-        return WMTMapper.INSTANCE.getRequestsDTO(request.getContent());
+    Page<Request> getRequestsTutorSide(QueryFilter queryFilter, Long tutorid) {
+        return requestService.getRequestsTutorSide(queryFilter.getPageSize(), queryFilter.getPageNo(), tutorid);
+//        return WMTMapper.INSTANCE.getRequestsDTO(request.getContent());
     }
 
     @Transactional
-    List<RequestDTO> getRequestsStudentSide(QueryFilter queryFilter, Long studentid) {
-        Page<Request> request = requestService.getRequestsStudentSide(queryFilter.getPageSize(), queryFilter.getPageNo(), studentid);
-        return WMTMapper.INSTANCE.getRequestsDTO(request.getContent());
+    Page<Request> getRequestsStudentSide(QueryFilter queryFilter, Long studentid) {
+        return requestService.getRequestsStudentSide(queryFilter.getPageSize(), queryFilter.getPageNo(), studentid);
+//        return WMTMapper.INSTANCE.getRequestsDTO(request.getContent());
+    }
+
+    @Transactional
+    RequestDTO getRequest(Long id){
+        return WMTMapper.INSTANCE.getRequestDTO(requestService.getRequest(id));
     }
 }
