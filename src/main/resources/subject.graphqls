@@ -12,3 +12,11 @@ type CategoryDTO{
 input InputSubject{
     id: Int
 }
+
+input InputCategory{
+    id: Int
+}
+
+type Category{
+    name: String
+}

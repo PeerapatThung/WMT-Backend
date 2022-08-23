@@ -1,8 +1,11 @@
 package com.project.demo.subject.entity;
 
+import com.project.demo.forum.entity.Question;
 import com.project.demo.security.entity.User;
 import com.project.demo.tutor.entity.Tutor;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,6 +25,11 @@ public class Category {
     @OneToMany (mappedBy = "category")
     @Builder.Default
     List<Subject> subjects = new ArrayList<>();
+
+    @OneToMany (mappedBy = "category")
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Question> questions = new ArrayList<>();
 
 }
 

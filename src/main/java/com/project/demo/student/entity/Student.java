@@ -1,5 +1,7 @@
 package com.project.demo.student.entity;
 
+import com.project.demo.forum.entity.Answer;
+import com.project.demo.forum.entity.Question;
 import com.project.demo.request.entity.Request;
 import com.project.demo.review.entity.Review;
 import com.project.demo.security.entity.User;
@@ -29,6 +31,9 @@ public class Student {
     @Builder.Default
     private boolean active = true;
 
+    @Builder.Default
+    private Integer rewardPoints = 0;
+
     @ManyToMany
     @Builder.Default
             @LazyCollection(LazyCollectionOption.FALSE)
@@ -41,10 +46,20 @@ public class Student {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     @Builder.Default
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Request> requests = new ArrayList<>();
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Question> questions = new ArrayList<>();
+
+    @ManyToMany
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Answer> votes = new ArrayList<>();
 }
 
 

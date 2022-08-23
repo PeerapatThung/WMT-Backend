@@ -1,0 +1,22 @@
+type AnswerDTO{
+    id:Int
+    description: String
+    votedBy: [StudentDTO]
+    votes: Int
+    status: String
+    tutor: TutorDTO
+}
+
+type Answer{
+    id:Int
+    description: String
+    votedBy: [Student]
+    votes: Int
+    status: String
+    tutor: Tutor
+}
+
+input InputAnswer{
+    id:Int
+    description: String
+}

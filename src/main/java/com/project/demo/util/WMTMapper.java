@@ -1,5 +1,9 @@
 package com.project.demo.util;
 
+import com.project.demo.forum.dto.AnswerDTO;
+import com.project.demo.forum.dto.QuestionDTO;
+import com.project.demo.forum.entity.Answer;
+import com.project.demo.forum.entity.Question;
 import com.project.demo.preference.dto.PreferenceDTO;
 import com.project.demo.preference.entity.Preference;
 import com.project.demo.request.dto.RequestDTO;
@@ -34,4 +38,8 @@ public interface WMTMapper {
     List<SubjectDTO> getSubjectsDTO(List<Subject> subjects);
     List<PreferenceDTO> getPreferencesDTO(List<Preference> preference);
     List<CategoryDTO> getCategoriesDTO(List<Category> categories);
+    List<AnswerDTO> getAnswersDTO(List<Answer> answers);
+
+    QuestionDTO getQuestionDTO(Question question);
+    AnswerDTO getAnswerDTO(Answer answer);
 }

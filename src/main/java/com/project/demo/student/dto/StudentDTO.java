@@ -20,6 +20,7 @@ public class StudentDTO {
     private boolean active;
     private List<TeachingTutorDTO> tutors;
     private UserDTO user;
+    private Integer rewardPoints;
 }
 
 

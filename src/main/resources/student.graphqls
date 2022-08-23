@@ -5,6 +5,7 @@ type StudentDTO{
     active: Boolean
     tutors: [TeachingTutorDTO]
     user: UserDTO
+    rewardPoints : Int
 }
 
 type Student{

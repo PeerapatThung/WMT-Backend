@@ -1,0 +1,32 @@
+type QuestionDTO{
+    id:Int
+    title: String
+    description: String
+    student: StudentDTO
+    answers: [AnswerDTO]
+    category: CategoryDTO
+    status: String
+}
+type Question{
+    id:Int
+    title: String
+    description: String
+    student: Student
+    answers: [Answer]
+    category: Category
+    status: String
+}
+
+input InputQuestion{
+    id:Int
+    title: String
+    description: String
+    student: InputStudent
+    category: InputCategory
+    status: String
+}
+
+type PageQuestion {
+    totalElements: Int
+    content:[Question]
+}

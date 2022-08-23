@@ -19,6 +19,10 @@ type Query{
     getCategories: [CategoryDTO]
     getSubjects(categoryid : Int): [SubjectDTO]
     getPreferences: [PreferenceDTO]
+
+    getQuestions(categoryid: Int, queryFilter: QueryFilter): PageQuestion
+    getQuestion(questionid: Int): Question
+    getAnswers(questionid: Int): [AnswerDTO]
 }
 
 type Mutation{
@@ -36,6 +40,12 @@ type Mutation{
     sendRequest(tutorid:Int, studentid:Int, request:SendRequest) : RequestDTO
     rejectRequest(request:SendReply) : RequestDTO
     acceptRequest(request:SendReply) : RequestDTO
+
+    askQuestion(studentid:Int, question: InputQuestion) : Question
+    resolveQuestion(question: InputQuestion, answerid: Int): QuestionDTO
+    lockQuestion(question: InputQuestion): QuestionDTO
+    answerQuestion(tutorid: Int, questionid: Int, answer: InputAnswer): AnswerDTO
+    voteAnswer(studentid: Int, answer: InputAnswer, question: InputQuestion): AnswerDTO
 }
 
 input QueryFilter{

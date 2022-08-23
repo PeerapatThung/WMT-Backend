@@ -57,7 +57,9 @@ public class RequestServiceImpl implements RequestService {
         Tutor tutor = tutorDao.getTutor(requestToAccept.getTutor().getId());
         Student student = studentDao.getStudent(requestToAccept.getStudent().getId());
         tutor.getStudents().add(student);
+        tutor.setRewardPoints(tutor.getRewardPoints() + 10);
         student.getTutors().add(tutor);
+        student.setRewardPoints(student.getRewardPoints() + 10);
         tutorDao.addStudentToTutor(student, tutor);
         return requestDao.acceptRequest(requestToAccept);
     }
