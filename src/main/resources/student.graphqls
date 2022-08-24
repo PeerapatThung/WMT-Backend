@@ -20,6 +20,7 @@ input InputStudent{
 }
 
 type TeachingTutorDTO{
+    profileImg: String
     user: UserDTO
 }
 
