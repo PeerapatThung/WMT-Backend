@@ -4,6 +4,7 @@ input InputReview{
 }
 
 type ReviewDTO{
+    id:Int
     description: String
     rating: Float
     student: StudentInCareDTO

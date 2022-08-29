@@ -38,7 +38,10 @@ public class QAServiceImpl implements QAService{
 
     @Override
     public Page<Question> getQuestionsByCategory(Long categoryid, Integer page, Integer pageSize) {
-        return qaDao.getQuestionsByCategory(categoryid,page,pageSize);
+        if(categoryid == null){
+            return qaDao.getAllQuestions(page, pageSize);
+        }
+        else return qaDao.getQuestionsByCategory(categoryid,page,pageSize);
     }
 
     @Override
@@ -56,7 +59,7 @@ public class QAServiceImpl implements QAService{
                 .build();
         category.getQuestions().add(newQuestion);
         studentAsking.setRewardPoints(studentAsking.getRewardPoints() + 1);
-        studentAsking.getQuestions().add(newQuestion);
+//        studentAsking.getQuestions().add(newQuestion);
         newQuestion.setStudent(studentAsking);
         newQuestion.setCategory(category);
         return qaDao.askQuestion(studentAsking, newQuestion);
