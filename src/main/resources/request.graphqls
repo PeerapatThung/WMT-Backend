@@ -8,9 +8,24 @@ input SendReply{
 }
 
 type RequestDTO{
+    id:Int
     message: String
     reply: String
     status: String
     student: StudentInCareDTO
     tutor: TeachingTutorDTO
+}
+
+type Request{
+    id:Int
+    message: String
+    reply: String
+    status: String
+    student: Student
+    tutor: Tutor
+}
+
+type PageRequest {
+    totalElements: Int
+    content:[Request]
 }

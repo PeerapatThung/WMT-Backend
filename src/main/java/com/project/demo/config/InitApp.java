@@ -58,7 +58,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Override
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        User user1,user2,user3,user4,user5,user6,user7,user8,user9,user10,user11,user12,user13;
+        User user1,user2,user3,user4,user5,user6,user7,user8,user9,user10,user11,user12,user13,userTest;
         Preference competitive, grading;
         Category physics, maths, biology, computer, social, chemistry, languages, others;
         Subject thermo, force, calculus, algebra;
@@ -100,6 +100,10 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         tutor5 = Tutor.builder()
                 .description("I'm a restricted tutor")
                 .active(false)
+                .build();
+        Tutor tutorTest = Tutor.builder()
+                .description("[b]Hello[/b][br][img=https://img.freepik.com/premium-photo/ripe-mango-with-green-leaf-isolated-white_252965-183.jpg?w=2000]")
+                .rewardPoints(50)
                 .build();
 
         //Request init
@@ -174,6 +178,16 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         Authority authAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
 
         //Mock Users Creation Zone
+        userTest = User.builder()
+                .username("test@bbcode.com")
+                .email("test@bbcode.com")
+                .password(encoder.encode("bbcode"))
+                .firstname("Hello")
+                .lastname("World")
+                .displayname("HellWorld")
+                .enabled(true)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .build();
         user1 = User.builder()
                 .username("student@admin.com")
                 .email("student@admin.com")
@@ -319,6 +333,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         tutor3.setUser(user8);
         tutor4.setUser(user9);
         tutor5.setUser(user11);
+        tutorTest.setUser(userTest);
         tutor1.getPreferences().add(grading);
         tutor1.getSubjects().add(thermo);
         tutor4.getPreferences().add(competitive);
@@ -328,6 +343,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         student4.getRequests().add(request1);
         student2.getRequests().add(request2);
         tutor3.getStudents().add(student3);
+        userTest.setTutor(tutorTest);
         user1.getAuthorities().add(authStudent);
         user1.setStudent(student1);
         user2.getAuthorities().add(authTutor);
@@ -364,6 +380,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         userRepository.save(user11);
         userRepository.save(user12);
         userRepository.save(user13);
+        userRepository.save(userTest);
         studentRepository.save(student1);
         studentRepository.save(student2);
         tutorRepository.save(tutor1);
@@ -371,6 +388,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         tutorRepository.save(tutor3);
         tutorRepository.save(tutor4);
         tutorRepository.save(tutor5);
+        tutorRepository.save(tutorTest);
         student3.getTutors().add(tutor3);
         studentRepository.save(student3);
         studentRepository.save(student4);

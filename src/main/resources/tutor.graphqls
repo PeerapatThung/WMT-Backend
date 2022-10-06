@@ -7,8 +7,10 @@ type TutorDTO{
     subjects: [SubjectDTO]
     preferences: [PreferenceDTO]
     reviews: [ReviewDTO]
+    requests: [RequestDTO]
     active: Boolean
     user: UserDTO
+    rewardPoints: Int
 }
 
 type Tutor{

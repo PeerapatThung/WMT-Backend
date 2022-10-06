@@ -9,6 +9,7 @@ public interface RequestService {
     Request writeRequest(Long tutorid, Long studentid, Request request);
     Request rejectRequest(Request request);
     Request acceptRequest(Request request);
+    Request getRequest(Long id);
     Page<Request> getRequestsTutorSide(Integer page, Integer pageSize,Long tutorid);
     Page<Request> getRequestsStudentSide(Integer page, Integer pageSize, Long studentid);
 }

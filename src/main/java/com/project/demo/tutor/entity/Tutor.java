@@ -1,5 +1,6 @@
 package com.project.demo.tutor.entity;
 
+import com.project.demo.forum.entity.Answer;
 import com.project.demo.preference.entity.Preference;
 import com.project.demo.request.entity.Request;
 import com.project.demo.review.entity.Review;
@@ -37,6 +38,13 @@ public class Tutor{
     private Integer reviewReceived = 0;
     @Builder.Default
     private boolean active = true;
+    @OneToMany (mappedBy = "tutor")
+    @Builder.Default
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Answer> answers = new ArrayList<>();
+
+    @Builder.Default
+    private Integer rewardPoints = 0;
 
     @ManyToMany
     @Builder.Default

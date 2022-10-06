@@ -5,6 +5,7 @@ type StudentDTO{
     active: Boolean
     tutors: [TeachingTutorDTO]
     user: UserDTO
+    rewardPoints : Int
 }
 
 type Student{
@@ -19,6 +20,7 @@ input InputStudent{
 }
 
 type TeachingTutorDTO{
+    profileImg: String
     user: UserDTO
 }
 
