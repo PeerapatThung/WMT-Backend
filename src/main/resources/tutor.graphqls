@@ -3,6 +3,7 @@ type TutorDTO{
     description: String
     profileImg: String
     overallRating: Float
+    reviewReceived: Int
     students: [StudentInCareDTO]
     subjects: [SubjectDTO]
     preferences: [PreferenceDTO]
