@@ -2,6 +2,7 @@ package com.project.demo.forum.graphql;
 
 import com.project.demo.forum.dto.AnswerDTO;
 import com.project.demo.forum.dto.QuestionDTO;
+import com.project.demo.forum.entity.Posts;
 import com.project.demo.forum.entity.Question;
 import com.project.demo.forum.service.QAService;
 import com.project.demo.request.dto.RequestDTO;
@@ -36,5 +37,10 @@ public class QAQuery implements GraphQLQueryResolver {
     @Transactional
     Question getQuestion(Long questionid) {
         return qaService.getQuestion(questionid);
+    }
+
+    @Transactional
+    Page<Posts> getPosts(QueryFilter queryFilter) {
+        return qaService.getPosts(queryFilter.getPageNo(), queryFilter.getPageSize());
     }
 }

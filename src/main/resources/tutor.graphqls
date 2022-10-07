@@ -17,6 +17,7 @@ type TutorDTO{
 type Tutor{
     id: Int
     profileImg: String
+    rewardPoints: Int
     overallRating: Float
     user: User
 }

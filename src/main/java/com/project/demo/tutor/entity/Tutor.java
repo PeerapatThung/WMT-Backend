@@ -1,6 +1,7 @@
 package com.project.demo.tutor.entity;
 
 import com.project.demo.forum.entity.Answer;
+import com.project.demo.forum.entity.Posts;
 import com.project.demo.preference.entity.Preference;
 import com.project.demo.request.entity.Request;
 import com.project.demo.review.entity.Review;
@@ -62,6 +63,8 @@ public class Tutor{
     private List<Student> students = new ArrayList<>();
     @OneToOne(mappedBy = "tutor")
     private User user;
+    @OneToOne(mappedBy = "tutor")
+    private Posts posts;
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
     @Builder.Default

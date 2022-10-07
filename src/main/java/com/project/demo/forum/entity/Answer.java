@@ -31,7 +31,7 @@ public class Answer {
     private Integer votes = 0;
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private ForumStatus status = ForumStatus.Ongoing;
+    private ForumStatus status = ForumStatus.Open;
     @ManyToOne
     private Question question;
     @ManyToOne

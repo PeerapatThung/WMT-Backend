@@ -1,6 +1,7 @@
 package com.project.demo.forum.dao;
 
 import com.project.demo.forum.entity.Answer;
+import com.project.demo.forum.entity.Posts;
 import com.project.demo.forum.entity.Question;
 import com.project.demo.student.entity.Student;
 import com.project.demo.tutor.entity.Tutor;
@@ -19,4 +20,7 @@ public interface QADao {
     Question getQuestion(Long id);
     Answer getAnswer(Long id);
     Answer voteAnswer(Student student, Tutor tutor, Answer answer);
+    Posts updatePost(Posts post);
+    Posts closePost(Posts post);
+    Page<Posts> getPosts(Integer page, Integer pageSize);
 }

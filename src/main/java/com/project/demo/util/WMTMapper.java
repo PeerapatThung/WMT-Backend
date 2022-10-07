@@ -1,8 +1,10 @@
 package com.project.demo.util;
 
 import com.project.demo.forum.dto.AnswerDTO;
+import com.project.demo.forum.dto.PostDTO;
 import com.project.demo.forum.dto.QuestionDTO;
 import com.project.demo.forum.entity.Answer;
+import com.project.demo.forum.entity.Posts;
 import com.project.demo.forum.entity.Question;
 import com.project.demo.preference.dto.PreferenceDTO;
 import com.project.demo.preference.entity.Preference;
@@ -42,4 +44,5 @@ public interface WMTMapper {
 
     QuestionDTO getQuestionDTO(Question question);
     AnswerDTO getAnswerDTO(Answer answer);
+    PostDTO getPostDTO(Posts post);
 }

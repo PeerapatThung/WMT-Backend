@@ -1,0 +1,24 @@
+type PostDTO{
+    id:Int
+    description: String
+    status: String
+    lastOpened: String
+    tutor: Tutor
+}
+type Posts{
+    id:Int
+    description: String
+    status: String
+    lastOpened: String
+    tutor: Tutor
+}
+
+input InputPosts{
+    id:Int
+    description: String
+}
+
+type PagePost{
+    totalElements: Int
+    content:[Posts]
+}

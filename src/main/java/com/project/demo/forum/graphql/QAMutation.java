@@ -1,8 +1,10 @@
 package com.project.demo.forum.graphql;
 
 import com.project.demo.forum.dto.AnswerDTO;
+import com.project.demo.forum.dto.PostDTO;
 import com.project.demo.forum.dto.QuestionDTO;
 import com.project.demo.forum.entity.Answer;
+import com.project.demo.forum.entity.Posts;
 import com.project.demo.forum.entity.Question;
 import com.project.demo.forum.service.QAService;
 import com.project.demo.request.dto.RequestDTO;
@@ -22,15 +24,15 @@ public class QAMutation implements GraphQLMutationResolver{
         return qaService.askQuestion(studentid, question);
     }
 
-    public QuestionDTO resolveQuestion(Question question, Long answerid){
-        Question questionToSolve = qaService.resolveQuestion(question, answerid);
-        return WMTMapper.INSTANCE.getQuestionDTO(questionToSolve);
-    }
-
-    public QuestionDTO lockQuestion(Question question){
-        Question questionToLock = qaService.lockQuestion(question);
-        return WMTMapper.INSTANCE.getQuestionDTO(questionToLock);
-    }
+//    public QuestionDTO resolveQuestion(Question question, Long answerid){
+//        Question questionToSolve = qaService.resolveQuestion(question, answerid);
+//        return WMTMapper.INSTANCE.getQuestionDTO(questionToSolve);
+//    }
+//
+//    public QuestionDTO lockQuestion(Question question){
+//        Question questionToLock = qaService.lockQuestion(question);
+//        return WMTMapper.INSTANCE.getQuestionDTO(questionToLock);
+//    }
 
     public AnswerDTO answerQuestion(Long tutorid, Long questionid, Answer answer){
         Answer answer1 = qaService.answerQuestion(tutorid,questionid,answer);
@@ -40,6 +42,16 @@ public class QAMutation implements GraphQLMutationResolver{
     public AnswerDTO voteAnswer(Long studentid, Answer answer, Question question){
         Answer answer1 = qaService.voteAnswer(studentid, answer, question);
         return WMTMapper.INSTANCE.getAnswerDTO(answer1);
+    }
+
+    public PostDTO updatePost(Long tutorid, Posts post){
+        Posts post1 = qaService.updatePost(tutorid, post);
+        return WMTMapper.INSTANCE.getPostDTO(post1);
+    }
+
+    public PostDTO closePost(Posts post){
+        Posts post1 = qaService.closePost(post);
+        return WMTMapper.INSTANCE.getPostDTO(post1);
     }
 
 

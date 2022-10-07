@@ -1,14 +1,17 @@
 package com.project.demo.forum.entity;
 
 import com.project.demo.student.entity.Student;
-import com.project.demo.subject.entity.Category;
 import com.project.demo.tutor.entity.Tutor;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,22 +19,17 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;
-    private String title;
     private String description;
-    @ManyToOne
-    private Student student;
-    @OneToMany(mappedBy = "question")
     @Builder.Default
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Answer> answers = new ArrayList<>();
-    @ManyToOne
-    private Category category;
+    private LocalDateTime lastOpened = LocalDateTime.now(ZoneId.of("GMT+07"));
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private ForumStatus status = ForumStatus.Open;
+    @OneToOne
+    private Tutor tutor;
 }
