@@ -25,6 +25,7 @@ public class ReviewDaoImpl implements ReviewDao {
     public Tutor writeReview(Tutor tutor, Student student, Review review) {
         reviewRepository.save(review);
         tutorRepository.save(tutor);
+        studentRepository.save(student);
         Tutor tutorToReturn = tutorRepository.findById(tutor.getId()).orElse(null);
         return tutorToReturn;
     }

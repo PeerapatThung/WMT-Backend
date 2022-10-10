@@ -83,4 +83,9 @@ public class TutorServiceImpl implements TutorService {
     public Page<Tutor> getTutors(Integer page, Integer pageSize) {
         return tutorDao.getTutors(page,pageSize);
     }
+
+    @Override
+    public List<Tutor> getRankedTutors() {
+        return tutorDao.getTutorRankings();
+    }
 }

@@ -5,6 +5,9 @@ import com.project.demo.student.entity.Student;
 import com.project.demo.subject.entity.Subject;
 import com.project.demo.tutor.entity.Tutor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 public interface TutorDao {
     Tutor createProfile(Tutor tutor);
@@ -16,5 +19,6 @@ public interface TutorDao {
     Page<Tutor> getMatchTutorPaginationByName(Integer pageSize, Integer page, String name);
     Page<Tutor> getMatchTutorPaginationByStudentInput(Integer pageSize, Integer page, Preference preference, Subject subject);
     Page<Tutor> getTutors(Integer pageSize, Integer page);
+    List<Tutor> getTutorRankings();
 
 }

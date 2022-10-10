@@ -20,5 +20,6 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
     Page<Tutor> findBySubjects_IdAndActiveTrue
             (Long subjects_id, Pageable pageable);
     Page<Tutor> findByActiveTrue(Pageable pageable);
+    List<Tutor> findByActiveTrueOrderByRewardPointsDesc();
 }
 

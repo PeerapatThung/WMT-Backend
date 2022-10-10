@@ -12,4 +12,5 @@ public interface TutorService {
     Tutor deleteProfile(Long id);
     Tutor undeleteTutor(Long id);
     Page<Tutor> getTutors(Integer page, Integer pageSize);
+    List<Tutor> getRankedTutors();
 }

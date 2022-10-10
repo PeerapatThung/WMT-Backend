@@ -50,6 +50,7 @@ type PageTutor {
 
 type StudentInCareDTO{
     id: Int
+    rewardPoints: Int
     profileImg: String
     user: UserDTO
 }

@@ -24,6 +24,9 @@ type Query{
     getQuestion(questionid: Int): Question
     getAnswers(questionid: Int): [AnswerDTO]
     getPosts(queryFilter: QueryFilter): PagePost
+
+    getRankedTutors: [TutorDTO]
+    getRankedStudents : [StudentDTO]
 }
 
 type Mutation{

@@ -66,4 +66,9 @@ public class StudentServiceImpl implements StudentService {
     public Page<Student> getStudents(Integer page, Integer pageSize) {
         return studentDao.getStudents(page,pageSize);
     }
+
+    @Override
+    public List<Student> getRankedStudents() {
+        return studentDao.getRankedStudents();
+    }
 }

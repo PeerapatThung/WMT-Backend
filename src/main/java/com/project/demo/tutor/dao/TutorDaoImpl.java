@@ -10,7 +10,10 @@ import com.project.demo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class TutorDaoImpl implements TutorDao {
@@ -72,6 +75,11 @@ public class TutorDaoImpl implements TutorDao {
     @Override
     public Page<Tutor> getTutors(Integer pageSize, Integer page) {
         return tutorRepository.findByActiveTrue(PageRequest.of(page-1, pageSize));
+    }
+
+    @Override
+    public List<Tutor> getTutorRankings() {
+        return tutorRepository.findByActiveTrueOrderByRewardPointsDesc();
     }
 
 }

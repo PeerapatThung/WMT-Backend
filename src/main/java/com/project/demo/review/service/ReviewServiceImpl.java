@@ -6,6 +6,7 @@ import com.project.demo.security.entity.User;
 import com.project.demo.security.repository.UserRepository;
 import com.project.demo.student.dao.StudentDao;
 import com.project.demo.student.entity.Student;
+import com.project.demo.student.repository.StudentRepository;
 import com.project.demo.student.service.StudentService;
 import com.project.demo.tutor.dao.TutorDao;
 import com.project.demo.tutor.entity.Tutor;
@@ -20,7 +21,8 @@ public class ReviewServiceImpl implements ReviewService {
     TutorDao tutorDao;
     @Autowired
     ReviewDao reviewDao;
-
+    @Autowired
+    StudentRepository studentRepository;
     @Override
     public Tutor writeReview(Long tutorid, Long studentid, Review review) {
         Tutor tutorBeingWriteTo = tutorDao.getTutor(tutorid);
@@ -35,7 +37,8 @@ public class ReviewServiceImpl implements ReviewService {
         tutorBeingWriteTo.setReviewReceived(numReview);
         tutorBeingWriteTo.setOverallRating(total / numReview);
         tutorBeingWriteTo.setTotalRating(total);
-        studentWriting.getReviews().add(review);
+//        studentWriting.getReviews().add(review);
+        studentWriting.setRewardPoints(studentWriting.getRewardPoints() + 5);
         reviewToWrite.setStudent(studentWriting);
         reviewToWrite.setTutor(tutorBeingWriteTo);
         return reviewDao.writeReview(tutorBeingWriteTo, studentWriting, reviewToWrite);

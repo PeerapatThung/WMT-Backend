@@ -15,4 +15,5 @@ public interface StudentService {
     Student deleteProfile(Long id);
     Student undeleteProfile(Long id);
     Page<Student> getStudents(Integer page, Integer pageSize);
+    List<Student> getRankedStudents();
 }

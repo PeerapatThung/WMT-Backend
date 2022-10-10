@@ -29,4 +29,9 @@ public class StudentQuery implements GraphQLQueryResolver {
     public Page<Student> getStudents(QueryFilter queryFilter) {
         return studentService.getStudents(queryFilter.getPageSize(), queryFilter.getPageNo());
     }
+
+    public List<StudentDTO> getRankedStudents() {
+        List<Student> students = studentService.getRankedStudents();
+        return WMTMapper.INSTANCE.getStudentsDTO(students);
+    }
 }

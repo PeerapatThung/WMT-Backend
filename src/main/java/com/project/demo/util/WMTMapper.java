@@ -41,6 +41,7 @@ public interface WMTMapper {
     List<PreferenceDTO> getPreferencesDTO(List<Preference> preference);
     List<CategoryDTO> getCategoriesDTO(List<Category> categories);
     List<AnswerDTO> getAnswersDTO(List<Answer> answers);
+    List<StudentDTO> getStudentsDTO(List<Student> students);
 
     QuestionDTO getQuestionDTO(Question question);
     AnswerDTO getAnswerDTO(Answer answer);

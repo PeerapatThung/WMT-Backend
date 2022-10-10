@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class StudentDaoImpl implements StudentDao{
     @Autowired
@@ -40,5 +42,10 @@ public class StudentDaoImpl implements StudentDao{
     @Override
     public Page<Student> getStudents(Integer pageSize, Integer page) {
         return studentRepository.findByActiveTrue(PageRequest.of(page-1, pageSize));
+    }
+
+    @Override
+    public List<Student> getRankedStudents() {
+        return studentRepository.findByActiveTrueOrderByRewardPointsDesc();
     }
 }
