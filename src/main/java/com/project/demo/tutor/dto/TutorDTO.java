@@ -1,6 +1,7 @@
 package com.project.demo.tutor.dto;
 
 import com.project.demo.forum.dto.AnswerDTO;
+import com.project.demo.forum.dto.PostTutorDTO;
 import com.project.demo.forum.entity.Answer;
 import com.project.demo.preference.dto.PreferenceDTO;
 import com.project.demo.request.dto.RequestDTO;
@@ -32,6 +33,7 @@ public class TutorDTO {
     private List<ReviewDTO> reviews;
     private Integer reviewReceived;
     private Integer rewardPoints;
+    private PostTutorDTO posts;
 }
 
 

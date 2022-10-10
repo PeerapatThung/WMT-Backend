@@ -9,6 +9,7 @@ type TutorDTO{
     preferences: [PreferenceDTO]
     reviews: [ReviewDTO]
     requests: [RequestDTO]
+    posts: PostTutorDTO
     active: Boolean
     user: UserDTO
     rewardPoints: Int

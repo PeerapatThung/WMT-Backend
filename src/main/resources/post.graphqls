@@ -13,6 +13,10 @@ type Posts{
     tutor: Tutor
 }
 
+type PostTutorDTO{
+    id:Int
+}
+
 input InputPosts{
     id:Int
     description: String

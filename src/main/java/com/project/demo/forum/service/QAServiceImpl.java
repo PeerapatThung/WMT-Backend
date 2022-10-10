@@ -151,6 +151,7 @@ public class QAServiceImpl implements QAService{
             Posts postToUpdate = postRepository.findById(tutorToPost.getPosts().getId()).orElse(null);
             postToUpdate.setDescription(post.getDescription());
             postToUpdate.setLastOpened(LocalDateTime.now(ZoneId.of("GMT+07")));
+            postToUpdate.setStatus(ForumStatus.Open);
             tutorToPost.setRewardPoints(tutorToPost.getRewardPoints() + 10);
             tutorRepository.save(tutorToPost);
             return qaDao.updatePost(postToUpdate);
