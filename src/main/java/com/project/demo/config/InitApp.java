@@ -344,6 +344,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         student4.getRequests().add(request1);
         student2.getRequests().add(request2);
         tutor3.getStudents().add(student3);
+        userTest.getAuthorities().add(authTutor);
         userTest.setTutor(tutorTest);
         user1.getAuthorities().add(authStudent);
         user1.setStudent(student1);
