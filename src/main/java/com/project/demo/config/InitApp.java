@@ -69,6 +69,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         //Student init
         student1 = Student.builder()
                 .description("I'm a very good student")
+                .rewardPoints(35)
                 .build();
         student2 = Student.builder()
                 .description("I'm a student sending request")

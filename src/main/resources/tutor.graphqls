@@ -27,6 +27,7 @@ input InputTutor{
     id: Int
     description: String
     profileImg: String
+    rewardPoints: Int
     preferences: [InputPreference]
     subjects: [InputSubject]
 }

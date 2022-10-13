@@ -17,6 +17,7 @@ type Student{
 input InputStudent{
     description: String
     profileImg: String
+    rewardPoints: Int
 }
 
 type TeachingTutorDTO{
